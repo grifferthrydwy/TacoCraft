@@ -1,4 +1,4 @@
-package io.github.franiscoder.tacocraft.gui;
+package io.github.franiscoder.tacocraft.client.gui;
 
 import io.github.cottonmc.cotton.gui.CottonCraftingController;
 import io.github.cottonmc.cotton.gui.widget.WBar;

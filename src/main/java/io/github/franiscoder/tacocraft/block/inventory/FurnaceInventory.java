@@ -26,7 +26,7 @@ import java.util.List;
  * @author Juuz
  */
 @FunctionalInterface
-public interface ImplementedInventory extends SidedInventory {
+public interface FurnaceInventory extends SidedInventory {
     List<InventoryListener> listeners = new ArrayList<>();
 
     /**
@@ -35,7 +35,7 @@ public interface ImplementedInventory extends SidedInventory {
      * @param items the item list
      * @return a new inventory
      */
-    static ImplementedInventory of(DefaultedList<ItemStack> items) {
+    static FurnaceInventory of(DefaultedList<ItemStack> items) {
         return () -> items;
     }
 
@@ -47,7 +47,7 @@ public interface ImplementedInventory extends SidedInventory {
      * @param size the inventory size
      * @return a new inventory
      */
-    static ImplementedInventory ofSize(int size) {
+    static FurnaceInventory ofSize(int size) {
         return of(DefaultedList.ofSize(size, ItemStack.EMPTY));
     }
 

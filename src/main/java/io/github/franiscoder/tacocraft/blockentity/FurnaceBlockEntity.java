@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.block.entity;
+package io.github.franiscoder.tacocraft.blockentity;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import io.github.franiscoder.tacocraft.block.inventory.ImplementedInventory;
+import io.github.franiscoder.tacocraft.block.inventory.FurnaceInventory;
 import io.github.franiscoder.tacocraft.init.ModBlocks;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -19,7 +19,7 @@ import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
-public class FurnaceBlockEntity extends BlockEntity implements ImplementedInventory, InventoryProvider, PropertyDelegateHolder, Tickable {
+public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory, InventoryProvider, PropertyDelegateHolder, Tickable {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
     public int burnTime = 0;
     public int fuelTime = 0;
@@ -81,7 +81,7 @@ public class FurnaceBlockEntity extends BlockEntity implements ImplementedInvent
 
     @Override
     public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) {
-        return ImplementedInventory.of(getItems());
+        return FurnaceInventory.of(getItems());
     }
 
     @Override
@@ -111,7 +111,6 @@ public class FurnaceBlockEntity extends BlockEntity implements ImplementedInvent
         } else if (doneBurning) {
             world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, false), 3);
         }
-
 
 
     }

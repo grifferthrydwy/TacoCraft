@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tacocraft:tortilla_dough"
+  },
+  "result": "tacocraft:empty_shell",
+  "experience": 0.05,
+  "cookingtime": 100
+}

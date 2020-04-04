@@ -1,0 +1,15 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tacocraft:corn"
+    },
+    {
+      "item": "tacocraft:corn"
+    }
+  ],
+  "result": {
+    "item": "tacocraft:tortilla_dough",
+    "count": 1
+  }
+}

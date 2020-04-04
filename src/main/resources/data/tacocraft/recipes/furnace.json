@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CWC",
+    "W W",
+    "CWC"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:brick"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "tacocraft:furnace",
+    "count": 1
+  }
+}

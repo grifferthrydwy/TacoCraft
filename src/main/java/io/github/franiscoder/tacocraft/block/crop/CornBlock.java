@@ -70,7 +70,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
     }
 
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        super.scheduledTick(state,world,pos,random);
+        super.scheduledTick(state, world, pos, random);
         if (world.getBaseLightLevel(pos, 0) >= 9) {
             int age = state.get(AGE);
             if (state.get(HALF).equals(DoubleBlockHalf.UPPER)) {
@@ -80,8 +80,8 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
                 }
             } else {
                 if (age < getMaxAge() && world.random.nextInt(growthDelay) == 0) {
-                    world.setBlockState(pos.up(), this.withAge(age + 1).with(HALF, DoubleBlockHalf.UPPER),2);
-                    world.setBlockState(pos, this.withAge(age + 1).with(HALF, DoubleBlockHalf.LOWER),2);
+                    world.setBlockState(pos.up(), this.withAge(age + 1).with(HALF, DoubleBlockHalf.UPPER), 2);
+                    world.setBlockState(pos, this.withAge(age + 1).with(HALF, DoubleBlockHalf.LOWER), 2);
                 }
             }
         }
@@ -155,6 +155,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         builder.add(HALF);
         builder.add(AGE);
     }
+
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;

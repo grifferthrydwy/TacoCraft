@@ -4,8 +4,8 @@ import io.github.franiscoder.tacocraft.TacoCraft;
 import io.github.franiscoder.tacocraft.block.ComalBlock;
 import io.github.franiscoder.tacocraft.block.FurnaceBlock;
 import io.github.franiscoder.tacocraft.block.crop.CornBlock;
-import io.github.franiscoder.tacocraft.block.entity.ComalBlockEntity;
-import io.github.franiscoder.tacocraft.block.entity.FurnaceBlockEntity;
+import io.github.franiscoder.tacocraft.blockentity.ComalBlockEntity;
+import io.github.franiscoder.tacocraft.blockentity.FurnaceBlockEntity;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
@@ -16,7 +16,7 @@ import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
     public static final FurnaceBlock FURNACE_BLOCK = new FurnaceBlock(FabricBlockSettings.of(Material.STONE).hardness(3.5F).lightLevel(13).build());
-    public static final ComalBlock COMAL = new ComalBlock(FabricBlockSettings.of(Material.CARPET).build());
+    public static final ComalBlock COMAL = new ComalBlock(FabricBlockSettings.of(Material.ANVIL).build());
 
     public static final CornBlock CORN_BLOCK = new CornBlock(5, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).build());
     //public static final CornBlockMid CORN_BLOCK_MID = new CornBlockMid(FabricBlockSettings.of(Material.PLANT).build());

@@ -1,7 +1,7 @@
 package io.github.franiscoder.tacocraft.block;
 
 import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.block.entity.FurnaceBlockEntity;
+import io.github.franiscoder.tacocraft.blockentity.FurnaceBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
