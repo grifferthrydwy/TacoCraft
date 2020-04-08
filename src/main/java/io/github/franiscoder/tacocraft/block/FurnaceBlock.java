@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
@@ -58,6 +59,7 @@ public class FurnaceBlock extends AbstractFurnaceBlock {
             double k = axis == Direction.Axis.Z ? (double) direction.getOffsetZ() * 0.52D : h;
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
             world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
+            world.addParticle(ParticleTypes.SMOKE, d, e + 1.0D, f, 0.0D, 0.0D, 0.0D);
         }
     }
 

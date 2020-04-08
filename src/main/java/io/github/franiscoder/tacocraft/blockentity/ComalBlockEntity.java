@@ -91,6 +91,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
     public void startCooking() {
         cookTime = 300;
         setCanRender();
+        sync();
     }
 
     public boolean isCooking() {

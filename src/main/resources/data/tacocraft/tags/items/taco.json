@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "tacocraft:steak_taco",
+    "tacocraft:carnitas_taco",
+    "tacocraft:al_pastor_taco",
+    "tacocraft:fish_taco",
+    "tacocraft:chicken_taco",
+    "tacocraft:cheesy_taco",
+    "tacocraft:crunchy_taco"
+  ]
+}

@@ -8,6 +8,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryListener;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.DefaultedList;
 import net.minecraft.util.math.Direction;
 
@@ -91,7 +92,7 @@ public interface FurnaceInventory extends SidedInventory {
      */
     @Override
     default boolean canInsertInvStack(int slot, ItemStack stack, Direction side) {
-        return AbstractFurnaceBlockEntity.canUseAsFuel(stack);
+        return AbstractFurnaceBlockEntity.canUseAsFuel(stack) || stack.getTranslationKey() == Items.BUCKET.getTranslationKey();
     }
 
     /**

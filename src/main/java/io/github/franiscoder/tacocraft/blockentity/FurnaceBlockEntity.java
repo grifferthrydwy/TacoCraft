@@ -105,8 +105,12 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
             fuelTime = getFuelTime(items.get(0));
             burnTime = fuelTime;
             ItemStack stack = items.get(0);
+            Item item = stack.getItem();
             stack.decrement(1);
-            items.set(0, stack);
+            if (stack.isEmpty()) {
+                Item item2 = item.getRecipeRemainder();
+                this.items.set(0, item2 == null ? ItemStack.EMPTY : new ItemStack(item2));
+            }
             world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, true), 3);
         } else if (doneBurning) {
             world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, false), 3);

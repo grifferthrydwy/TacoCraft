@@ -21,8 +21,11 @@ public class ModItems {
     public static final Item AL_PASTOR_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_PORKCHOP, 1, 0.1F));
     public static final Item FISH_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_COD));
     public static final Item CHICKEN_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_CHICKEN));
+    public static final Item CHEESY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 2, 0.2F));
 
     public static final Item CRUNCHY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF));
+
+    public static final Item GOLDEN_TACO = TacoHelper.createTaco(FoodComponents.GOLDEN_APPLE);
 
     public static void registerItems() {
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID,"corn_seed"), CORN_SEED);
@@ -36,8 +39,10 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "al_pastor_taco"), AL_PASTOR_TACO);
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "fish_taco"), FISH_TACO);
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "chicken_taco"), CHICKEN_TACO);
+        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "cheesy_taco"), CHEESY_TACO);
 
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "crunchy_taco"), CRUNCHY_TACO);
+        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "golden_taco"), GOLDEN_TACO);
     }
 
 }
