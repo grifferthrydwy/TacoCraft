@@ -28,10 +28,10 @@ public class ModItems {
     public static final Item GOLDEN_TACO = TacoHelper.createTaco(FoodComponents.GOLDEN_APPLE);
 
     public static void registerItems() {
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID,"corn_seed"), CORN_SEED);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID,"corn"), CORN);
+        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "corn_seed"), CORN_SEED);
+        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "corn"), CORN);
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "tortilla_dough"), TORTILLA_DOUGH);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID,"tortilla"), TORTILLA);
+        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "tortilla"), TORTILLA);
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "empty_shell"), EMPTY_SHELL);
 
         Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "steak_taco"), STEAK_TACO);

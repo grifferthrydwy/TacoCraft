@@ -6,12 +6,13 @@ import net.minecraft.item.Item;
 
 public class TacoHelper {
     public static FoodComponent createFoodComponent(FoodComponent baseMeat) {
-        return createFoodComponent(baseMeat, 0,0);
+        return createFoodComponent(baseMeat, 0, 0);
     }
+
     public static FoodComponent createFoodComponent(FoodComponent baseMeat, int hungerModifier, float satModifier) {
         return new FoodComponent.Builder()
-                .hunger(baseMeat.getHunger()+2+hungerModifier)
-                .saturationModifier(baseMeat.getSaturationModifier() + 0.2F+satModifier)
+                .hunger(baseMeat.getHunger() + 2 + hungerModifier)
+                .saturationModifier(baseMeat.getSaturationModifier() + 0.2F + satModifier)
                 .meat()
                 .build();
     }

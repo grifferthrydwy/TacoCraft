@@ -23,9 +23,9 @@ public class ModGen {
         Biomes.PLAINS.addFeature(
                 GenerationStep.Feature.TOP_LAYER_MODIFICATION,
                 new CornFieldFeature(DefaultFeatureConfig::deserialize)
-                .configure(new DefaultFeatureConfig())
-                .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP
-                .configure(new ChanceDecoratorConfig(100)))
+                        .configure(new DefaultFeatureConfig())
+                        .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP
+                                .configure(new ChanceDecoratorConfig(100)))
         );
         Biomes.SUNFLOWER_PLAINS.addFeature(
                 GenerationStep.Feature.TOP_LAYER_MODIFICATION,

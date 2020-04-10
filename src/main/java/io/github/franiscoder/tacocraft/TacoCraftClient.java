@@ -1,9 +1,9 @@
 package io.github.franiscoder.tacocraft;
 
 import io.github.franiscoder.tacocraft.block.FurnaceBlock;
-import io.github.franiscoder.tacocraft.client.render.ComalBlockEntityRenderer;
 import io.github.franiscoder.tacocraft.client.gui.FurnaceGUI;
 import io.github.franiscoder.tacocraft.client.gui.FurnaceScreen;
+import io.github.franiscoder.tacocraft.client.render.ComalBlockEntityRenderer;
 import io.github.franiscoder.tacocraft.init.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;

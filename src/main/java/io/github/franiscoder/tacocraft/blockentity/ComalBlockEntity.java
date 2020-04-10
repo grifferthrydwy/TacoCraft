@@ -37,7 +37,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
 
         if (isCooking()) {
             --cookTime;
-        }  else if (cookTime == 0) {
+        } else if (cookTime == 0) {
             doneCooking = true;
             --cookTime;
             this.setInvStack(0, ItemStack.EMPTY);
@@ -68,8 +68,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
     @Override
     public void fromClientTag(CompoundTag compoundTag) {
         if (compoundTag.getBoolean("hasTortilla")) {
-            this.setInvStack(0, ModItems.TORTILLA_DOUGH.getStackForRender().copy());
-
+            this.setInvStack(0, new ItemStack(ModItems.TORTILLA_DOUGH));
         }
         canRender = compoundTag.getBoolean("canRender");
         doneCooking = compoundTag.getBoolean("doneCooking");
@@ -77,7 +76,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
 
     @Override
     public CompoundTag toClientTag(CompoundTag compoundTag) {
-        ItemStack stack = ModItems.TORTILLA_DOUGH.getStackForRender();
+        ItemStack stack = new ItemStack(ModItems.TORTILLA_DOUGH);
         stack.setCount(1);
         boolean hasTortilla = this.getInvStack(0).getItem().getTranslationKey().equals(stack.getItem().getTranslationKey());
         compoundTag.putBoolean("hasTortilla", hasTortilla);
@@ -109,12 +108,15 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
             setCanRender();
         }
     }
+
     public boolean isFinished() {
         return doneCooking;
     }
+
     public ItemStack stackToRender() {
-        return canRender? doneCooking? ModItems.TORTILLA.getStackForRender() : ModItems.TORTILLA_DOUGH.getStackForRender() : ItemStack.EMPTY;
+        return canRender ? doneCooking ? new ItemStack(ModItems.TORTILLA) : new ItemStack(ModItems.TORTILLA_DOUGH) : ItemStack.EMPTY;
     }
+
     public void setCanRender() {
         boolean old = canRender;
         canRender = !old;

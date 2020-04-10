@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tacocraft",
-  "version": "1.1.0",
+  "version": "1.1.1",
 
   "name": "TacoCraft",
   "description": "Adds tacos to Minecraft!",
