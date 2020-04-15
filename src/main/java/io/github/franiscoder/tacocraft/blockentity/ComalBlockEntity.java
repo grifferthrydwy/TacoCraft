@@ -100,7 +100,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
     public void spawnTortilla() {
         if (doneCooking = true) {
             if (!this.getWorld().isClient) {
-                ItemScatterer.spawn(world, pos.getX(), pos.up().getY(), pos.getZ(), new ItemStack(ModItems.TORTILLA).copy());
+                ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.TORTILLA).copy());
             }
             this.markDirty();
             this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), 3);
