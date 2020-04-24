@@ -32,14 +32,14 @@ public class ModGen {
                 new CornFieldFeature(DefaultFeatureConfig::deserialize)
                         .configure(new DefaultFeatureConfig())
                         .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP
-                                .configure(new ChanceDecoratorConfig(10)))
+                                .configure(new ChanceDecoratorConfig(200)))
         );
         Biomes.SAVANNA.addFeature(
                 GenerationStep.Feature.TOP_LAYER_MODIFICATION,
                 new CornFieldFeature(DefaultFeatureConfig::deserialize)
                         .configure(new DefaultFeatureConfig())
                         .createDecoratedFeature(Decorator.CHANCE_HEIGHTMAP
-                                .configure(new ChanceDecoratorConfig(10)))
+                                .configure(new ChanceDecoratorConfig(200)))
         );
     }
 
