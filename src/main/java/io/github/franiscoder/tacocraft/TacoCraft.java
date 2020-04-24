@@ -21,12 +21,14 @@ import net.minecraft.util.Identifier;
 
 public class TacoCraft implements ModInitializer {
     public static final String MODID = "tacocraft";
+    public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
+            id("item_group"),
+            () -> new ItemStack(ModBlocks.FURNACE_BLOCK));
     private static final Identifier GRASS_LOOT_TABLE_ID = new Identifier("minecraft", "blocks/grass");
 
-
-    public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.build(
-            new Identifier(MODID, "item_group"),
-            () -> new ItemStack(ModBlocks.FURNACE_BLOCK));
+    public static Identifier id(String string) {
+        return new Identifier(MODID, string);
+    }
 
     @Override
     public void onInitialize() {
@@ -47,9 +49,5 @@ public class TacoCraft implements ModInitializer {
                 supplier.withPool(poolBuilder);
             }
         });
-
-
-
-
     }
 }

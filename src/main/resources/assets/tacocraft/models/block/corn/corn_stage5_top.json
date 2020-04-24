@@ -1,6 +1,6 @@
 {
   "parent": "tacocraft:block/corn/crop_model_corn",
   "textures": {
-    "crop":"tacocraft:block/corn_stage5_top"
+    "crop": "tacocraft:block/corn_stage5_top"
   }
 }

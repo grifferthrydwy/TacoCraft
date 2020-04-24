@@ -95,6 +95,7 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
 
     @Override
     public void tick() {
+        assert world != null;
         boolean readyToBurn = !isBurning() && AbstractFurnaceBlockEntity.canUseAsFuel(items.get(0));
         boolean isBurning = isBurning();
         boolean doneBurning = !isBurning && items.get(0) == ItemStack.EMPTY;
@@ -111,8 +112,10 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
                 Item item2 = item.getRecipeRemainder();
                 this.items.set(0, item2 == null ? ItemStack.EMPTY : new ItemStack(item2));
             }
+
             world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, true), 3);
         } else if (doneBurning) {
+
             world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, false), 3);
         }
 

@@ -17,6 +17,8 @@ import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
+import java.util.Objects;
+
 public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInventory, InventoryProvider, BlockEntityClientSerializable {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
     boolean doneCooking = false;
@@ -99,7 +101,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
 
     public void spawnTortilla() {
         if (doneCooking = true) {
-            if (!this.getWorld().isClient) {
+            if (!Objects.requireNonNull(this.getWorld()).isClient) {
                 ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.TORTILLA).copy());
             }
             this.markDirty();

@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class FurnaceBlock extends AbstractFurnaceBlock {
 
-    public static final Identifier ID = new Identifier(TacoCraft.MODID, "furnace");
+    public static final Identifier ID = TacoCraft.id("furnace");
 
     public FurnaceBlock(Settings settings) {
         super(settings);

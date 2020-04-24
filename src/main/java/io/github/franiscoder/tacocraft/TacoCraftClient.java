@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.container.BlockContext;
 
+@SuppressWarnings("unused")
 public class TacoCraftClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {

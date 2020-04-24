@@ -28,7 +28,7 @@ import java.util.Random;
 
 public class CornBlock extends TallPlantBlock implements Fertilizable {
     //Thanks To Yog, the CornBlock wouldn't be possible
-    public static final Identifier ID = new Identifier(TacoCraft.MODID, "corn_block");
+    public static final Identifier ID = TacoCraft.id("corn_block");
 
     public static final IntProperty AGE;
     public static final EnumProperty<DoubleBlockHalf> HALF;
@@ -39,8 +39,8 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         HALF = Properties.DOUBLE_BLOCK_HALF;
     }
 
-    public CornBlock(int delay, Settings settings) {
-        super(settings);
+    public CornBlock(int delay, Settings s) {
+        super(s);
         growthDelay = delay;
         this.setDefaultState(this.stateManager.getDefaultState().with(this.getAgeProperty(), 0).with(HALF, DoubleBlockHalf.LOWER));
     }

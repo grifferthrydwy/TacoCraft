@@ -5,15 +5,11 @@ import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.InventoryListener;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.DefaultedList;
 import net.minecraft.util.math.Direction;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@code SidedInventory} implementation with only default methods + an item list getter.
@@ -28,7 +24,6 @@ import java.util.List;
  */
 @FunctionalInterface
 public interface FurnaceInventory extends SidedInventory {
-    List<InventoryListener> listeners = new ArrayList<>();
 
     /**
      * Creates an inventory from the item list.
@@ -40,17 +35,6 @@ public interface FurnaceInventory extends SidedInventory {
         return () -> items;
     }
 
-    // Creation
-
-    /**
-     * Creates a new inventory with the size.
-     *
-     * @param size the inventory size
-     * @return a new inventory
-     */
-    static FurnaceInventory ofSize(int size) {
-        return of(DefaultedList.ofSize(size, ItemStack.EMPTY));
-    }
 
     /**
      * Gets the item list of this inventory.
@@ -92,7 +76,7 @@ public interface FurnaceInventory extends SidedInventory {
      */
     @Override
     default boolean canInsertInvStack(int slot, ItemStack stack, Direction side) {
-        return AbstractFurnaceBlockEntity.canUseAsFuel(stack) || stack.getTranslationKey() == Items.BUCKET.getTranslationKey();
+        return AbstractFurnaceBlockEntity.canUseAsFuel(stack) || stack.getTranslationKey().equals(Items.BUCKET.getTranslationKey());
     }
 
     /**
@@ -215,10 +199,6 @@ public interface FurnaceInventory extends SidedInventory {
     @Override
     default boolean canPlayerUseInv(PlayerEntity player) {
         return true;
-    }
-
-    default void addListener(InventoryListener listener) {
-        this.listeners.add(listener);
     }
 
     @Override

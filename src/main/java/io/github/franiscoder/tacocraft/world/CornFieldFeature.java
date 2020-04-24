@@ -1,6 +1,5 @@
 package io.github.franiscoder.tacocraft.world;
 
-import com.mojang.datafixers.Dynamic;
 import io.github.franiscoder.tacocraft.block.crop.CornBlock;
 import io.github.franiscoder.tacocraft.init.ModBlocks;
 import net.minecraft.block.Blocks;
@@ -15,11 +14,10 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
-import java.util.function.Function;
 
 public class CornFieldFeature extends Feature<DefaultFeatureConfig> {
-    public CornFieldFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> configDeserializer) {
-        super(configDeserializer);
+    public CornFieldFeature() {
+        super(DefaultFeatureConfig::deserialize);
     }
 
     @Override

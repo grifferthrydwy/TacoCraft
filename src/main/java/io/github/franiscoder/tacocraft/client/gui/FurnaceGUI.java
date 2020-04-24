@@ -4,8 +4,6 @@ import io.github.cottonmc.cotton.gui.CottonCraftingController;
 import io.github.cottonmc.cotton.gui.widget.WBar;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.container.BlockContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.recipe.RecipeType;
@@ -30,20 +28,4 @@ public class FurnaceGUI extends CottonCraftingController {
         root.add(this.createPlayerInventoryPanel(), 0, 4);
         root.validate(this);
     }
-
-    @Environment(EnvType.CLIENT)
-    public int getFuelProgress() {
-        int i = this.propertyDelegate.get(1);
-        if (i == 0) {
-            i = 200;
-        }
-
-        return this.propertyDelegate.get(0) * 13 / i;
-    }
-
-    @Environment(EnvType.CLIENT)
-    public boolean isBurning() {
-        return this.propertyDelegate.get(0) > 0;
-    }
-
 }

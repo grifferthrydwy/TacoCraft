@@ -11,6 +11,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.item.ItemStack;
 
+import java.util.Objects;
+
 public class ComalBlockEntityRenderer extends BlockEntityRenderer<ComalBlockEntity> {
 
 
@@ -26,7 +28,7 @@ public class ComalBlockEntityRenderer extends BlockEntityRenderer<ComalBlockEnti
 
         matrices.translate(0.5, 0, 0.45);
         matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(90));
-        int lightAbove = WorldRenderer.getLightmapCoordinates(blockEntity.getWorld(), blockEntity.getPos().up());
+        int lightAbove = WorldRenderer.getLightmapCoordinates(Objects.requireNonNull(blockEntity.getWorld()), blockEntity.getPos().up());
 
         MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers);
 

@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class ComalBlock extends BlockWithEntity {
-    public static final Identifier ID = new Identifier(TacoCraft.MODID, "comal");
+    public static final Identifier ID = TacoCraft.id("comal");
 
     public ComalBlock(Settings settings) {
         super(settings.nonOpaque());

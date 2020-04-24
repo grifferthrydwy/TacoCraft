@@ -6,7 +6,6 @@ import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ModItems {
@@ -28,21 +27,21 @@ public class ModItems {
     public static final Item GOLDEN_TACO = TacoHelper.createTaco(FoodComponents.GOLDEN_APPLE);
 
     public static void registerItems() {
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "corn_seed"), CORN_SEED);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "corn"), CORN);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "tortilla_dough"), TORTILLA_DOUGH);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "tortilla"), TORTILLA);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "empty_shell"), EMPTY_SHELL);
+        Registry.register(Registry.ITEM, TacoCraft.id("corn_seed"), CORN_SEED);
+        Registry.register(Registry.ITEM, TacoCraft.id("corn"), CORN);
+        Registry.register(Registry.ITEM, TacoCraft.id("tortilla_dough"), TORTILLA_DOUGH);
+        Registry.register(Registry.ITEM, TacoCraft.id("tortilla"), TORTILLA);
+        Registry.register(Registry.ITEM, TacoCraft.id("empty_shell"), EMPTY_SHELL);
 
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "steak_taco"), STEAK_TACO);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "carnitas_taco"), CARNITAS_TACO);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "al_pastor_taco"), AL_PASTOR_TACO);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "fish_taco"), FISH_TACO);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "chicken_taco"), CHICKEN_TACO);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "cheesy_taco"), CHEESY_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("steak_taco"), STEAK_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("carnitas_taco"), CARNITAS_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("al_pastor_taco"), AL_PASTOR_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("fish_taco"), FISH_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("chicken_taco"), CHICKEN_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("cheesy_taco"), CHEESY_TACO);
 
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "crunchy_taco"), CRUNCHY_TACO);
-        Registry.register(Registry.ITEM, new Identifier(TacoCraft.MODID, "golden_taco"), GOLDEN_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("crunchy_taco"), CRUNCHY_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("golden_taco"), GOLDEN_TACO);
     }
 
 }
