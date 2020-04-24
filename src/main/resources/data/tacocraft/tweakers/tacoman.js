@@ -3,8 +3,8 @@ var TraderTweaker = libcd.require("Tradesmen.TraderTweaker");
 TraderTweaker.addTrader("tradesmen:tacoman", TraderTweaker.makeTrader()
     .name("Taco Jubilee")
     .animal("minecraft:bee")
-    .texture("tradesman:textures/entity/villager/villager.png")
-
+    .texture("tradesmen:textures/entity/taco_man.png")
+    .clothes("tradesmen:textures/entity/taco_man.png")
     .setTrades([[
             TraderTweaker.makeTrade("tacocraft:steak_taco@3",4,4,1),
             TraderTweaker.makeTrade("tacocraft:fish_taco@3",2,4,1),
