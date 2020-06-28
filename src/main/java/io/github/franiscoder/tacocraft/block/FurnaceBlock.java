@@ -4,12 +4,12 @@ import io.github.franiscoder.tacocraft.TacoCraft;
 import io.github.franiscoder.tacocraft.blockentity.FurnaceBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.container.ContainerProviderRegistry;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
@@ -29,12 +29,10 @@ public class FurnaceBlock extends AbstractFurnaceBlock {
     }
 
     @Override
-    protected void openContainer(World world, BlockPos pos, PlayerEntity player) {
-        if (world.isClient) return;
-
+    protected void openScreen(World world, BlockPos pos, PlayerEntity player) {
         BlockEntity be = world.getBlockEntity(pos);
         if (be instanceof FurnaceBlockEntity) {
-            ContainerProviderRegistry.INSTANCE.openContainer(ID, player, (packetByteBuf -> packetByteBuf.writeBlockPos(pos)));
+            player.openHandledScreen((NamedScreenHandlerFactory) be);
         }
     }
 

@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.2.7-SNAPSHOT'
+	id 'fabric-loom' version '0.4-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -26,9 +26,8 @@ dependencies {
 	modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
 	include "io.github.cottonmc:LibGui:${project.libgui_version}"
 
-
-	modImplementation "io.github.Linguardium:WanderingTradesmen:${project.tradesment_version}"
-	include "io.github.Linguardium:WanderingTradesmen:${project.tradesment_version}"
+	//modImplementation "io.github.Linguardium:WanderingTradesmen:${project.tradesment_version}"
+	//include "io.github.Linguardium:WanderingTradesmen:${project.tradesment_version}"
 
 	compileOnly ("com.google.code.findbugs:jsr305:3.0.2") { transitive = false }
 }

@@ -11,15 +11,17 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.DefaultedList;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.Tickable;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.WorldAccess;
 
+import javax.annotation.Nullable;
 import java.util.Objects;
 
-public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInventory, InventoryProvider, BlockEntityClientSerializable {
+public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInventory, InventoryProvider, BlockEntityClientSerializable, SidedInventory {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
     boolean doneCooking = false;
     boolean canRender = false;
@@ -42,14 +44,14 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
         } else if (cookTime == 0) {
             doneCooking = true;
             --cookTime;
-            this.setInvStack(0, ItemStack.EMPTY);
+            this.setStack(0, ItemStack.EMPTY);
             sync();
         }
     }
 
     @Override
-    public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) {
-        return ComalInventory.of(getItems());
+    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
+        return this;
     }
 
     @Override
@@ -60,17 +62,16 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
     }
 
     @Override
-    public void fromTag(CompoundTag tag) {
-        super.fromTag(tag);
+    public void fromTag(BlockState state, CompoundTag tag) {
+        super.fromTag(state, tag);
         this.cookTime = tag.getShort("CookTime");
         Inventories.fromTag(tag, items);
-
     }
 
     @Override
     public void fromClientTag(CompoundTag compoundTag) {
         if (compoundTag.getBoolean("hasTortilla")) {
-            this.setInvStack(0, new ItemStack(ModItems.TORTILLA_DOUGH));
+            this.setStack(0, new ItemStack(ModItems.TORTILLA_DOUGH));
         }
         canRender = compoundTag.getBoolean("canRender");
         doneCooking = compoundTag.getBoolean("doneCooking");
@@ -80,7 +81,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
     public CompoundTag toClientTag(CompoundTag compoundTag) {
         ItemStack stack = new ItemStack(ModItems.TORTILLA_DOUGH);
         stack.setCount(1);
-        boolean hasTortilla = this.getInvStack(0).getItem().getTranslationKey().equals(stack.getItem().getTranslationKey());
+        boolean hasTortilla = this.getStack(0).getTranslationKey().equals(stack.getItem().getTranslationKey());
         compoundTag.putBoolean("hasTortilla", hasTortilla);
         compoundTag.putBoolean("canRender", canRender);
         compoundTag.putBoolean("doneCooking", doneCooking);
@@ -122,5 +123,25 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, ComalInve
     public void setCanRender() {
         boolean old = canRender;
         canRender = !old;
+    }
+
+    @Override
+    public int[] getAvailableSlots(Direction side) {
+        int[] result = new int[getItems().size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = i;
+        }
+
+        return result;
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+        return true;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+        return true;
     }
 }

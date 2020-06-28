@@ -3,12 +3,8 @@ package io.github.franiscoder.tacocraft.block;
 import io.github.franiscoder.tacocraft.TacoCraft;
 import io.github.franiscoder.tacocraft.blockentity.ComalBlockEntity;
 import io.github.franiscoder.tacocraft.init.ModItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -40,7 +36,7 @@ public class ComalBlock extends BlockWithEntity {
         return BlockRenderType.MODEL;
     }
 
-    public VoxelShape getOutlineShape(BlockState state, BlockView view, BlockPos pos, EntityContext context) {
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return Block.createCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D);
     }
 
@@ -54,11 +50,11 @@ public class ComalBlock extends BlockWithEntity {
 
 
         boolean handIsTortillaDough = player.getStackInHand(hand).copy().getItem() == ModItems.TORTILLA_DOUGH;
-        boolean itemIsNotCooking = inv.getInvStack(0).isEmpty();
+        boolean itemIsNotCooking = inv.getStack(0).isEmpty();
         boolean furnaceIsLit = world.getBlockState(pos.down()).get(FurnaceBlock.LIT);
         if (handIsTortillaDough && itemIsNotCooking && furnaceIsLit) {
 
-            ((Inventory) be).setInvStack(0, new ItemStack(ModItems.TORTILLA_DOUGH));
+            ((Inventory) be).setStack(0, new ItemStack(ModItems.TORTILLA_DOUGH));
             player.getStackInHand(hand).decrement(1);
             ((ComalBlockEntity) be).startCooking();
             ((ComalBlockEntity) be).sync();

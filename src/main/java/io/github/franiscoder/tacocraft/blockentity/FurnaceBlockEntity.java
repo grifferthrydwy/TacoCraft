@@ -2,60 +2,72 @@ package io.github.franiscoder.tacocraft.blockentity;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import io.github.franiscoder.tacocraft.block.inventory.FurnaceInventory;
+import io.github.franiscoder.tacocraft.client.gui.FurnaceGUI;
 import io.github.franiscoder.tacocraft.init.ModBlocks;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.container.PropertyDelegate;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.DefaultedList;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.PropertyDelegate;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Tickable;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
+import net.minecraft.util.math.Direction;
+import net.minecraft.world.WorldAccess;
 
-public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory, InventoryProvider, PropertyDelegateHolder, Tickable {
+import javax.annotation.Nullable;
+
+public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory, InventoryProvider, SidedInventory, PropertyDelegateHolder, Tickable, ExtendedScreenHandlerFactory {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
     public int burnTime = 0;
     public int fuelTime = 0;
-    public PropertyDelegate propertyDelegate;
+    public PropertyDelegate propertyDelegate = new PropertyDelegate() {
+
+        public int get(int index) {
+            switch (index) {
+                case 0:
+                    return burnTime;
+                case 1:
+                    return fuelTime;
+                default:
+                    return 0;
+            }
+        }
+
+        public void set(int index, int value) {
+            switch (index) {
+                case 0:
+                    burnTime = value;
+                    break;
+                case 1:
+                    fuelTime = value;
+                    break;
+            }
+
+        }
+
+        public int size() {
+            return 2;
+        }
+    };
 
     public FurnaceBlockEntity() {
         super(ModBlocks.FURNACE_BLOCK_ENTITY);
-        propertyDelegate = new PropertyDelegate() {
-
-            public int get(int index) {
-                switch (index) {
-                    case 0:
-                        return burnTime;
-                    case 1:
-                        return fuelTime;
-                    default:
-                        return 0;
-                }
-            }
-
-            public void set(int index, int value) {
-                switch (index) {
-                    case 0:
-                        burnTime = value;
-                        break;
-                    case 1:
-                        fuelTime = value;
-                        break;
-                }
-
-            }
-
-            public int size() {
-                return 2;
-            }
-        };
     }
 
     @Override
@@ -64,8 +76,8 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
     }
 
     @Override
-    public void fromTag(CompoundTag tag) {
-        super.fromTag(tag);
+    public void fromTag(BlockState state, CompoundTag tag) {
+        super.fromTag(state, tag);
         this.burnTime = tag.getShort("BurnTime");
         this.fuelTime = tag.getShort("FuelTime");
         Inventories.fromTag(tag, items);
@@ -80,13 +92,13 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
     }
 
     @Override
-    public SidedInventory getInventory(BlockState state, IWorld world, BlockPos pos) {
-        return FurnaceInventory.of(getItems());
+    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
+        return this;
     }
 
     @Override
     public PropertyDelegate getPropertyDelegate() {
-        return this.propertyDelegate;
+        return propertyDelegate;
     }
 
     public boolean isBurning() {
@@ -129,5 +141,41 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
             Item item = fuel.getItem();
             return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(item, 0);
         }
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return new TranslatableText(getCachedState().getBlock().getTranslationKey());
+    }
+
+    @Nullable
+    @Override
+    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+        return new FurnaceGUI(syncId, inv, ScreenHandlerContext.create(this.world, this.pos));
+    }
+
+    @Override
+    public int[] getAvailableSlots(Direction side) {
+        int[] result = new int[getItems().size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = i;
+        }
+
+        return result;
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction dir) {
+        return true;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction dir) {
+        return true;
+    }
+
+    @Override
+    public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+        buf.writeBlockPos(pos);
     }
 }
