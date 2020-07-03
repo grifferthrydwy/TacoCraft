@@ -1,0 +1,19 @@
+{
+  "block.tacocraft.furnace": "砖窑",
+  "block.tacocraft.comal": "平底锅",
+  "block.tacocraft.corn_block": "玉米块",
+  "itemGroup.tacocraft.item_group": "TacoCraft",
+  "item.tacocraft.corn_seed": "玉米粒",
+  "item.tacocraft.corn": "玉米",
+  "item.tacocraft.tortilla": "玉米饼",
+  "item.tacocraft.tortilla_dough": "玉米饼面团",
+  "item.tacocraft.empty_shell": "空饼皮",
+  "item.tacocraft.steak_taco": "牛排玉米卷",
+  "item.tacocraft.carnitas_taco": "墨西哥小肉玉米卷",
+  "item.tacocraft.al_pastor_taco": "牧羊人风格玉米卷",
+  "item.tacocraft.fish_taco": "鱼玉米卷",
+  "item.tacocraft.chicken_taco": "鸡肉玉米卷",
+  "item.tacocraft.crunchy_taco": "爽脆玉米卷",
+  "item.tacocraft.golden_taco": "金玉米卷",
+  "item.tacocraft.cheesy_taco": "芝士玉米卷"
+}
