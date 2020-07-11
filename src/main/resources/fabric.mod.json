@@ -24,11 +24,17 @@
       "io.github.franiscoder.tacocraft.TacoCraftClient"
     ]
   },
+  "custom": {
+    "modupdater": {
+      "strategy": "json",
+      "url": "https://raw.githubusercontent.com/franiscoder/ModInfo/master/TacoCraft.json"
+    }
+  },
   "depends": {
-    "fabricloader": ">=0.8.8",
+    "fabricloader": ">=0.8.9",
     "fabric": "*",
     "minecraft": "1.16.x",
-    "libgui": ">=2.0.1"
+    "libgui": ">=2.2.0"
   },
   "suggests": {
     "flamingo": "*"
