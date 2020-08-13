@@ -8,6 +8,7 @@ import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
@@ -21,8 +22,8 @@ public class CornFieldFeature extends Feature<DefaultFeatureConfig> {
     }
 
     @Override
-    public boolean generate(ServerWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator generator, Random random, BlockPos pos, DefaultFeatureConfig config) {
-        BlockPos topPos1 = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, pos);
+    public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig featureConfig) {
+        BlockPos topPos1 = world.getTopPosition(Heightmap.Type.OCEAN_FLOOR_WG, blockPos);
         world.setBlockState(topPos1.down(), Blocks.FARMLAND.getDefaultState().with(FarmlandBlock.MOISTURE, 7), 3);
         world.setBlockState(topPos1, ModBlocks.CORN_BLOCK.getDefaultState().with(CornBlock.AGE, 7).with(CornBlock.HALF, DoubleBlockHalf.LOWER), 3);
         world.setBlockState(topPos1.up(), ModBlocks.CORN_BLOCK.getDefaultState().with(CornBlock.AGE, 7).with(CornBlock.HALF, DoubleBlockHalf.UPPER), 3);
