@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.franiscoder.tacocraft.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinGenerationSettings"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

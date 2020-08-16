@@ -24,6 +24,9 @@
       "io.github.franiscoder.tacocraft.TacoCraftClient"
     ]
   },
+  "mixins": [
+    "tacocraft.mixins.json"
+  ],
   "custom": {
     "modupdater": {
       "strategy": "json",
