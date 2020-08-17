@@ -6,8 +6,6 @@ import io.github.franiscoder.tacocraft.init.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
@@ -44,17 +42,16 @@ public class ComalBlock extends BlockWithEntity {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (world.isClient()) return ActionResult.PASS;
         BlockEntity be = world.getBlockEntity(pos);
-        Inventory inv = (Inventory) be;
 
         if (!(be instanceof ComalBlockEntity)) return ActionResult.PASS;
 
 
         boolean handIsTortillaDough = player.getStackInHand(hand).copy().getItem() == ModItems.TORTILLA_DOUGH;
-        boolean itemIsNotCooking = inv.getStack(0).isEmpty();
+        boolean itemIsNotCooking = !((ComalBlockEntity) be).isCooking();
         boolean furnaceIsLit = world.getBlockState(pos.down()).get(FurnaceBlock.LIT);
+
         if (handIsTortillaDough && itemIsNotCooking && furnaceIsLit) {
 
-            ((Inventory) be).setStack(0, new ItemStack(ModItems.TORTILLA_DOUGH));
             player.getStackInHand(hand).decrement(1);
             ((ComalBlockEntity) be).startCooking();
             ((ComalBlockEntity) be).sync();
@@ -63,6 +60,7 @@ public class ComalBlock extends BlockWithEntity {
         } else if (((ComalBlockEntity) be).isFinished()) {
             ((ComalBlockEntity) be).spawnTortilla();
             ((ComalBlockEntity) be).sync();
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }

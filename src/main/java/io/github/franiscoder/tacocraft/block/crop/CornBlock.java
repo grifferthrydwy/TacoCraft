@@ -7,7 +7,6 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -42,31 +41,23 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
     public CornBlock(int delay, Settings s) {
         super(s);
         growthDelay = delay;
-        this.setDefaultState(this.stateManager.getDefaultState().with(this.getAgeProperty(), 0).with(HALF, DoubleBlockHalf.LOWER));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(HALF, DoubleBlockHalf.LOWER));
     }
 
     protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) {
         return floor.getBlock() == Blocks.FARMLAND;
     }
 
-    public IntProperty getAgeProperty() {
-        return AGE;
-    }
-
-    public int getMaxAge() {
-        return 7;
-    }
-
-    protected int getAge(BlockState state) {
-        return state.get(this.getAgeProperty());
+    protected static int getAge(BlockState state) {
+        return state.get(AGE);
     }
 
     public BlockState withAge(int age) {
-        return this.getDefaultState().with(this.getAgeProperty(), age);
+        return this.getDefaultState().with(AGE, age);
     }
 
-    public boolean isMature(BlockState state) {
-        return state.get(this.getAgeProperty()) >= this.getMaxAge();
+    public static boolean isMature(BlockState state) {
+        return state.get(AGE) >= 7;
     }
 
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -74,12 +65,12 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         if (world.getBaseLightLevel(pos, 0) >= 9) {
             int age = state.get(AGE);
             if (state.get(HALF).equals(DoubleBlockHalf.UPPER)) {
-                if (age < getMaxAge() && world.random.nextInt(growthDelay) == 0) {
+                if (age < 7 && world.random.nextInt(growthDelay) == 0) {
                     world.setBlockState(pos, this.withAge(age + 1).with(HALF, DoubleBlockHalf.UPPER), 2);
                     world.setBlockState(pos.down(), this.withAge(age + 1).with(HALF, DoubleBlockHalf.LOWER), 2);
                 }
             } else {
-                if (age < getMaxAge() && world.random.nextInt(growthDelay) == 0) {
+                if (age < 7 && world.random.nextInt(growthDelay) == 0) {
                     world.setBlockState(pos.up(), this.withAge(age + 1).with(HALF, DoubleBlockHalf.UPPER), 2);
                     world.setBlockState(pos, this.withAge(age + 1).with(HALF, DoubleBlockHalf.LOWER), 2);
                 }
@@ -89,7 +80,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(AGE).equals(getMaxAge())) {
+        if (state.get(AGE).equals(7)) {
             int count = world.random.nextInt(3) + 1;
             ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.CORN, count));
             if (state.get(HALF).equals(DoubleBlockHalf.UPPER)) {
@@ -105,41 +96,36 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
 
     public void applyGrowth(World world, BlockPos pos, BlockState state) {
         int age = state.get(AGE);
-        int i = this.getAge(state) + this.getGrowthAmount(world);
-        int j = this.getMaxAge();
+        int i = CornBlock.getAge(state) + CornBlock.getGrowthAmount(world);
+        int j = 7;
         if (i > j) {
             i = j;
         }
 
         if (state.get(HALF).equals(DoubleBlockHalf.UPPER)) {
-            if (age < getMaxAge() && world.random.nextInt(growthDelay) == 0) {
+            if (age < 7 && world.random.nextInt(growthDelay) == 0) {
                 world.setBlockState(pos, this.withAge(i).with(HALF, DoubleBlockHalf.UPPER));
                 world.setBlockState(pos.down(), this.withAge(i).with(HALF, DoubleBlockHalf.LOWER));
             }
         } else {
-            if (age < getMaxAge() && world.random.nextInt(growthDelay) == 0) {
+            if (age < 7 && world.random.nextInt(growthDelay) == 0) {
                 world.setBlockState(pos.up(), this.withAge(i).with(HALF, DoubleBlockHalf.UPPER));
                 world.setBlockState(pos, this.withAge(i).with(HALF, DoubleBlockHalf.LOWER));
             }
         }
     }
 
-    protected int getGrowthAmount(World world) {
+    protected static int getGrowthAmount(World world) {
         return MathHelper.nextInt(world.random, 2, 5);
     }
 
     @Environment(EnvType.CLIENT)
-    protected ItemConvertible getSeedsItem() {
-        return ModItems.CORN_SEED;
-    }
-
-    @Environment(EnvType.CLIENT)
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        return new ItemStack(this.getSeedsItem());
+        return new ItemStack(ModItems.CORN_SEED);
     }
 
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return !this.isMature(state);
+        return !CornBlock.isMature(state);
     }
 
     @Override

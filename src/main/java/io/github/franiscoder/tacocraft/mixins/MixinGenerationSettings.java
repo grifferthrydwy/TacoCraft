@@ -22,14 +22,17 @@ import java.util.function.Supplier;
 /**
  * @author RebornCore https://github.com/TechReborn/RebornCore/blob/56c193ca3918f2efb9d03af3145b5076f28fec58/src/main/java/reborncore/mixin/common/MixinGenerationSettings.java
  */
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 @Mixin(GenerationSettings.class)
 public class MixinGenerationSettings {
 
+    @SuppressWarnings("unused")
     @Shadow
     @Final
     @Mutable
     private List<List<Supplier<ConfiguredFeature<?, ?>>>> features;
 
+    @SuppressWarnings("unused")
     @Inject(method = "<init>", at = @At("RETURN"))
     private void init(Supplier<ConfiguredSurfaceBuilder<?>> surfaceBuilder, Map<GenerationStep.Carver, List<Supplier<ConfiguredCarver<?>>>> carvers, List<List<Supplier<ConfiguredFeature<?, ?>>>> features, List<Supplier<ConfiguredStructureFeature<?, ?>>> structureFeatures, CallbackInfo info){
         this.features = new ArrayList<>(features);

@@ -1,3 +1,6 @@
 {
-  "parent": "tacocraft:block/comal"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tacocraft:item/comal"
+  }
 }

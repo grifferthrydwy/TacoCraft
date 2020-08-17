@@ -156,8 +156,9 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
 
     @Override
     public int[] getAvailableSlots(Direction side) {
-        int[] result = new int[getItems().size()];
-        for (int i = 0; i < result.length; i++) {
+        int[] result = new int[items.size()];
+        int resultLength = result.length;
+        for (int i = 0; i < resultLength; i++) {
             result[i] = i;
         }
 

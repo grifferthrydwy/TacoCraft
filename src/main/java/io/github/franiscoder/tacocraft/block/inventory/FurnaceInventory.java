@@ -20,17 +20,8 @@ import net.minecraft.util.collection.DefaultedList;
  * @author Juuz
  */
 
+@SuppressWarnings("InterfaceWithOnlyOneDirectInheritor")
 public interface FurnaceInventory extends Inventory {
-
-    /**
-     * Creates an inventory from the item list.
-     *
-     * @param items the item list
-     * @return a new inventory
-     */
-    static FurnaceInventory of(DefaultedList<ItemStack> items) {
-        return () -> items;
-    }
 
 
     /**
@@ -61,7 +52,8 @@ public interface FurnaceInventory extends Inventory {
      */
     @Override
     default boolean isEmpty() {
-        for (int i = 0; i < size(); i++) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
             ItemStack stack = getStack(i);
             if (!stack.isEmpty()) {
                 return false;
