@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.screen.ScreenHandlerType;
 
 @SuppressWarnings("unused")
 public class TacoCraftClient implements ClientModInitializer {

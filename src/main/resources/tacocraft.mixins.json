@@ -1,10 +1,11 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.franiscoder.tacocraft.mixins",
+  "package": "io.github.franiscoder.tacocraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "MixinGenerationSettings"
+    "GenerationSettingsAccessor",
+    "MinecraftServerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -44,20 +44,24 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0).with(HALF, DoubleBlockHalf.LOWER));
     }
 
-    protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) {
-        return floor.getBlock() == Blocks.FARMLAND;
-    }
-
     protected static int getAge(BlockState state) {
         return state.get(AGE);
     }
 
-    public BlockState withAge(int age) {
-        return this.getDefaultState().with(AGE, age);
-    }
-
     public static boolean isMature(BlockState state) {
         return state.get(AGE) >= 7;
+    }
+
+    protected static int getGrowthAmount(World world) {
+        return MathHelper.nextInt(world.random, 2, 5);
+    }
+
+    protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) {
+        return floor.getBlock() == Blocks.FARMLAND;
+    }
+
+    public BlockState withAge(int age) {
+        return this.getDefaultState().with(AGE, age);
     }
 
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
@@ -113,10 +117,6 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
                 world.setBlockState(pos, this.withAge(i).with(HALF, DoubleBlockHalf.LOWER));
             }
         }
-    }
-
-    protected static int getGrowthAmount(World world) {
-        return MathHelper.nextInt(world.random, 2, 5);
     }
 
     @Environment(EnvType.CLIENT)
