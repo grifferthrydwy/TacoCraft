@@ -29,14 +29,9 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
     //Thanks To Yog, the CornBlock wouldn't be possible
     public static final Identifier ID = TacoCraft.id("corn_block");
 
-    public static final IntProperty AGE;
-    public static final EnumProperty<DoubleBlockHalf> HALF;
+    public static final IntProperty AGE = Properties.AGE_7;
+    public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
     public static int growthDelay;
-
-    static {
-        AGE = Properties.AGE_7;
-        HALF = Properties.DOUBLE_BLOCK_HALF;
-    }
 
     public CornBlock(int delay, Settings s) {
         super(s);
@@ -56,6 +51,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         return MathHelper.nextInt(world.random, 2, 5);
     }
 
+    @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) {
         return floor.getBlock() == Blocks.FARMLAND;
     }
@@ -64,6 +60,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         return this.getDefaultState().with(AGE, age);
     }
 
+    @Override
     public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.scheduledTick(state, world, pos, random);
         if (world.getBaseLightLevel(pos, 0) >= 9) {
@@ -124,6 +121,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         return new ItemStack(ModItems.CORN_SEED);
     }
 
+    @Override
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
         return !CornBlock.isMature(state);
     }
@@ -133,10 +131,12 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         return true;
     }
 
+    @Override
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
         this.applyGrowth(world, pos, state);
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(HALF);
         builder.add(AGE);

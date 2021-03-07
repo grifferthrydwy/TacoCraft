@@ -28,8 +28,8 @@ public class ComalBlockEntityRenderer extends BlockEntityRenderer<ComalBlockEnti
 
         matrices.translate(0.5, 0, 0.45);
         matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(90));
-        int lightAbove = WorldRenderer.getLightmapCoordinates(Objects.requireNonNull(blockEntity.getWorld()), blockEntity.getPos().up());
 
+        int lightAbove = WorldRenderer.getLightmapCoordinates(Objects.requireNonNull(blockEntity.getWorld()), blockEntity.getPos().up());
         MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers);
 
         matrices.pop();

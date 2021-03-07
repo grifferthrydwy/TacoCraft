@@ -29,8 +29,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory, InventoryProvider, SidedInventory, PropertyDelegateHolder, Tickable, ExtendedScreenHandlerFactory {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);

@@ -18,7 +18,6 @@ public class TacoCraftClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.COMAL, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORN_BLOCK, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORN_BLOCK, RenderLayer.getCutout());
-        //ScreenProviderRegistry.INSTANCE.registerFactory(FurnaceBlock.ID, (syncId, identifier, player, buf) -> new FurnaceScreen(new FurnaceGUI(syncId, player.inventory, BlockContext.create(player.world, buf.readBlockPos())), player));
         ScreenRegistry.Factory<FurnaceGUI, FurnaceScreen> screenFactory = (gui, inventory, title) -> new FurnaceScreen(gui, inventory.player, title);
         ScreenRegistry.register(TacoCraft.Furnace, screenFactory);
 

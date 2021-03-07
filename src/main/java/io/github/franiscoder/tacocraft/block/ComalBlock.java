@@ -14,8 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
 
 public class ComalBlock extends BlockWithEntity {
     public static final Identifier ID = TacoCraft.id("comal");
@@ -43,24 +43,25 @@ public class ComalBlock extends BlockWithEntity {
         if (world.isClient()) return ActionResult.PASS;
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (!(be instanceof ComalBlockEntity)) return ActionResult.PASS;
+        if (be instanceof ComalBlockEntity) {
+            ComalBlockEntity comal = (ComalBlockEntity) be;
 
+            boolean handIsTortillaDough = player.getStackInHand(hand).copy().getItem() == ModItems.TORTILLA_DOUGH;
+            boolean itemIsNotCooking = !comal.isCooking();
+            boolean furnaceIsLit = world.getBlockState(pos.down()).get(FurnaceBlock.LIT);
 
-        boolean handIsTortillaDough = player.getStackInHand(hand).copy().getItem() == ModItems.TORTILLA_DOUGH;
-        boolean itemIsNotCooking = !((ComalBlockEntity) be).isCooking();
-        boolean furnaceIsLit = world.getBlockState(pos.down()).get(FurnaceBlock.LIT);
+            if (handIsTortillaDough && itemIsNotCooking && furnaceIsLit) {
 
-        if (handIsTortillaDough && itemIsNotCooking && furnaceIsLit) {
+                player.getStackInHand(hand).decrement(1);
+                comal.startCooking();
+                comal.sync();
 
-            player.getStackInHand(hand).decrement(1);
-            ((ComalBlockEntity) be).startCooking();
-            ((ComalBlockEntity) be).sync();
-
-            return ActionResult.SUCCESS;
-        } else if (((ComalBlockEntity) be).isFinished()) {
-            ((ComalBlockEntity) be).spawnTortilla();
-            ((ComalBlockEntity) be).sync();
-            return ActionResult.SUCCESS;
+                return ActionResult.SUCCESS;
+            } else if (comal.isFinished()) {
+                comal.spawnTortilla();
+                comal.sync();
+                return ActionResult.SUCCESS;
+            }
         }
         return ActionResult.PASS;
     }

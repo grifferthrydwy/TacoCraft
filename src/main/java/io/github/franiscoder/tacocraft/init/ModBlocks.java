@@ -7,6 +7,7 @@ import io.github.franiscoder.tacocraft.block.crop.CornBlock;
 import io.github.franiscoder.tacocraft.blockentity.ComalBlockEntity;
 import io.github.franiscoder.tacocraft.blockentity.FurnaceBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
@@ -19,13 +20,11 @@ import net.minecraft.util.registry.Registry;
 import java.util.function.ToIntFunction;
 
 public class ModBlocks {
-    public static final FurnaceBlock FURNACE_BLOCK = new FurnaceBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.5F).lightLevel(createLightLevelFromBlockState()));
-    public static final ComalBlock COMAL = new ComalBlock(FabricBlockSettings.of(Material.SUPPORTED));
-
-    public static final CornBlock CORN_BLOCK = new CornBlock(7, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
+    public static final Block FURNACE_BLOCK = new FurnaceBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.5F).lightLevel(createLightLevelFromBlockState()));
+    public static final Block COMAL = new ComalBlock(FabricBlockSettings.of(Material.SUPPORTED));
+    public static final Block CORN_BLOCK = new CornBlock(7, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
 
     public static BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY;
-
     public static BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY;
 
     public static void registerBlocks() {

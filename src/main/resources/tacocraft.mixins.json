@@ -4,8 +4,6 @@
   "package": "io.github.franiscoder.tacocraft.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "GenerationSettingsAccessor",
-    "MinecraftServerMixin",
     "MixinComposterBlock"
   ],
   "injectors": {

@@ -21,9 +21,7 @@ public class ModItems {
     public static final Item FISH_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_COD));
     public static final Item CHICKEN_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_CHICKEN));
     public static final Item CHEESY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 2, 0.2F));
-
     public static final Item CRUNCHY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF));
-
     public static final Item GOLDEN_TACO = TacoHelper.createTaco(FoodComponents.GOLDEN_APPLE);
 
     public static void registerItems() {
@@ -39,7 +37,6 @@ public class ModItems {
         Registry.register(Registry.ITEM, TacoCraft.id("fish_taco"), FISH_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("chicken_taco"), CHICKEN_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("cheesy_taco"), CHEESY_TACO);
-
         Registry.register(Registry.ITEM, TacoCraft.id("crunchy_taco"), CRUNCHY_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("golden_taco"), GOLDEN_TACO);
     }
