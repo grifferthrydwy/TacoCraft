@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.init;
+package io.github.frqnny.tacocraft.init;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.world.CornFieldFeature;
+import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.world.CornFieldFeature;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
@@ -9,10 +9,8 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.ChanceDecorator;
 import net.minecraft.world.gen.decorator.ChanceDecoratorConfig;
 import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.NopeDecoratorConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;

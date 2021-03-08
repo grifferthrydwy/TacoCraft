@@ -1,6 +1,6 @@
-package io.github.franiscoder.tacocraft.mixin;
+package io.github.frqnny.tacocraft.mixin;
 
-import io.github.franiscoder.tacocraft.init.ModItems;
+import io.github.frqnny.tacocraft.init.ModItems;
 import net.minecraft.block.ComposterBlock;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

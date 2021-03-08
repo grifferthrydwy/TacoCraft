@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.blockentity;
+package io.github.frqnny.tacocraft.blockentity;
 
-import io.github.franiscoder.tacocraft.init.ModBlocks;
-import io.github.franiscoder.tacocraft.init.ModItems;
+import io.github.frqnny.tacocraft.init.ModBlocks;
+import io.github.frqnny.tacocraft.init.ModItems;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

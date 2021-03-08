@@ -1,9 +1,9 @@
-package io.github.franiscoder.tacocraft.blockentity;
+package io.github.frqnny.tacocraft.blockentity;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
-import io.github.franiscoder.tacocraft.block.inventory.FurnaceInventory;
-import io.github.franiscoder.tacocraft.client.gui.FurnaceGUI;
-import io.github.franiscoder.tacocraft.init.ModBlocks;
+import io.github.frqnny.tacocraft.block.inventory.FurnaceInventory;
+import io.github.frqnny.tacocraft.client.gui.FurnaceGUI;
+import io.github.frqnny.tacocraft.init.ModBlocks;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;

@@ -9,8 +9,8 @@
     "TacomonkeyC32"
   ],
   "contact": {
-    "sources": "https://github.com/franiscoder/TacoCraft",
-    "issues": "https://github.com/franiscoder/TacoCraft",
+    "sources": "https://github.com/frqnny/TacoCraft",
+    "issues": "https://github.com/frqnny/TacoCraft",
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/tacocraft-fabric"
   },
   "license": "LGPL-3.0",
@@ -18,10 +18,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.franiscoder.tacocraft.TacoCraft"
+      "io.github.frqnny.tacocraft.TacoCraft"
     ],
     "client": [
-      "io.github.franiscoder.tacocraft.TacoCraftClient"
+      "io.github.frqnny.tacocraft.TacoCraftClient"
+    ],
+    "tweed:config": [
+      "io.github.frqnny.tacocraft.config.Config"
     ]
   },
   "mixins": [

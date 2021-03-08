@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.block;
+package io.github.frqnny.tacocraft.block;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.blockentity.FurnaceBlockEntity;
+import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.blockentity.FurnaceBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.AbstractFurnaceBlock;

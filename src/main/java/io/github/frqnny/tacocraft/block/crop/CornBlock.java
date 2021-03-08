@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.block.crop;
+package io.github.frqnny.tacocraft.block.crop;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.init.ModItems;
+import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.init.ModItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -104,6 +104,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         }
 
         if (state.get(HALF).equals(DoubleBlockHalf.UPPER)) {
+
             if (age < 7 && world.random.nextInt(growthDelay) == 0) {
                 world.setBlockState(pos, this.withAge(i).with(HALF, DoubleBlockHalf.UPPER));
                 world.setBlockState(pos.down(), this.withAge(i).with(HALF, DoubleBlockHalf.LOWER));

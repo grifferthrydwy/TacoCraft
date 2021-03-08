@@ -1,11 +1,11 @@
-package io.github.franiscoder.tacocraft.init;
+package io.github.frqnny.tacocraft.init;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.block.ComalBlock;
-import io.github.franiscoder.tacocraft.block.FurnaceBlock;
-import io.github.franiscoder.tacocraft.block.crop.CornBlock;
-import io.github.franiscoder.tacocraft.blockentity.ComalBlockEntity;
-import io.github.franiscoder.tacocraft.blockentity.FurnaceBlockEntity;
+import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.block.ComalBlock;
+import io.github.frqnny.tacocraft.block.FurnaceBlock;
+import io.github.frqnny.tacocraft.block.crop.CornBlock;
+import io.github.frqnny.tacocraft.blockentity.ComalBlockEntity;
+import io.github.frqnny.tacocraft.blockentity.FurnaceBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

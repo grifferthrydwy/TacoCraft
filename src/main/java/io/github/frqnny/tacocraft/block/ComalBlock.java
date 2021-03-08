@@ -1,8 +1,8 @@
-package io.github.franiscoder.tacocraft.block;
+package io.github.frqnny.tacocraft.block;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.blockentity.ComalBlockEntity;
-import io.github.franiscoder.tacocraft.init.ModItems;
+import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.blockentity.ComalBlockEntity;
+import io.github.frqnny.tacocraft.init.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

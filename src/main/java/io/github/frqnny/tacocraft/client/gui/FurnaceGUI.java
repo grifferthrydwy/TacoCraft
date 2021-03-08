@@ -1,10 +1,10 @@
-package io.github.franiscoder.tacocraft.client.gui;
+package io.github.frqnny.tacocraft.client.gui;
 
 import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WBar;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
-import io.github.franiscoder.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.TacoCraft;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.Identifier;

@@ -1,6 +1,6 @@
-package io.github.franiscoder.tacocraft.client.render;
+package io.github.frqnny.tacocraft.client.render;
 
-import io.github.franiscoder.tacocraft.blockentity.ComalBlockEntity;
+import io.github.frqnny.tacocraft.blockentity.ComalBlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.WorldRenderer;

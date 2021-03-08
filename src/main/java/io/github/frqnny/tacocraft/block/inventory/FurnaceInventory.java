@@ -1,4 +1,4 @@
-package io.github.franiscoder.tacocraft.block.inventory;
+package io.github.frqnny.tacocraft.block.inventory;
 
 
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;

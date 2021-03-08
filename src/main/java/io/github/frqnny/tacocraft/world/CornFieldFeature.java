@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.world;
+package io.github.frqnny.tacocraft.world;
 
-import io.github.franiscoder.tacocraft.block.crop.CornBlock;
-import io.github.franiscoder.tacocraft.init.ModBlocks;
+import io.github.frqnny.tacocraft.block.crop.CornBlock;
+import io.github.frqnny.tacocraft.init.ModBlocks;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FarmlandBlock;
 import net.minecraft.block.enums.DoubleBlockHalf;

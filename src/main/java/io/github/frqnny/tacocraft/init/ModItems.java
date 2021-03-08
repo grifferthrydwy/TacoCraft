@@ -1,7 +1,7 @@
-package io.github.franiscoder.tacocraft.init;
+package io.github.frqnny.tacocraft.init;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
-import io.github.franiscoder.tacocraft.item.TacoHelper;
+import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.item.TacoHelper;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.FoodComponents;

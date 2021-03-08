@@ -1,6 +1,6 @@
-package io.github.franiscoder.tacocraft.item;
+package io.github.frqnny.tacocraft.item;
 
-import io.github.franiscoder.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.TacoCraft;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 

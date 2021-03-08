@@ -1,4 +1,4 @@
-package io.github.franiscoder.tacocraft.client.gui;
+package io.github.frqnny.tacocraft.client.gui;
 
 import io.github.cottonmc.cotton.gui.client.CottonInventoryScreen;
 import net.minecraft.entity.player.PlayerEntity;
