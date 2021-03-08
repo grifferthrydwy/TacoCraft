@@ -5,6 +5,7 @@ import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.collection.DefaultedList;
 
@@ -21,7 +22,7 @@ import net.minecraft.util.collection.DefaultedList;
  */
 
 @SuppressWarnings("InterfaceWithOnlyOneDirectInheritor")
-public interface FurnaceInventory extends Inventory {
+public interface FurnaceInventory extends Inventory, SidedInventory {
 
 
     /**

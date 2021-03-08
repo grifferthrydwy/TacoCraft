@@ -4,6 +4,7 @@ import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import io.github.frqnny.tacocraft.block.inventory.FurnaceInventory;
 import io.github.frqnny.tacocraft.client.gui.FurnaceGUI;
 import io.github.frqnny.tacocraft.init.ModBlocks;
+import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -31,7 +32,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory, InventoryProvider, SidedInventory, PropertyDelegateHolder, Tickable, ExtendedScreenHandlerFactory {
+public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory, InventoryProvider, PropertyDelegateHolder, Tickable, ExtendedScreenHandlerFactory {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(2, ItemStack.EMPTY);
     public int burnTime = 0;
     public int fuelTime = 0;
@@ -90,6 +91,23 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
         return super.toTag(tag);
     }
 
+    /*
+    @Override
+    public void fromClientTag(CompoundTag tag) {
+        this.burnTime = tag.getShort("BurnTime");
+        this.fuelTime = tag.getShort("FuelTime");
+        Inventories.fromTag(tag, items);
+    }
+
+    @Override
+    public CompoundTag toClientTag(CompoundTag tag) {
+        tag.putShort("BurnTime", (short) this.burnTime);
+        tag.putShort("FuelTime", (short) this.burnTime);
+        Inventories.toTag(tag, items);
+        return tag;
+    }
+
+     */
     @Override
     public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
         return this;
@@ -106,34 +124,44 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
 
     @Override
     public void tick() {
-        assert world != null;
-        boolean readyToBurn = !isBurning() && AbstractFurnaceBlockEntity.canUseAsFuel(items.get(0));
-        boolean isBurning = isBurning();
-        boolean doneBurning = !isBurning && items.get(0) == ItemStack.EMPTY;
+        boolean markDirtyAfterTick = false;
+
+        boolean readyToBurn = !this.isBurning() && AbstractFurnaceBlockEntity.canUseAsFuel(items.get(0));
+        boolean isBurning = this.isBurning();
+        boolean doneBurning = !this.isBurning() && items.get(0) == ItemStack.EMPTY;
 
         if (isBurning) {
             --burnTime;
-        } else if (readyToBurn) {
-            fuelTime = getFuelTime(items.get(0));
-            burnTime = fuelTime;
-            ItemStack stack = items.get(0);
-            Item item = stack.getItem();
-            stack.decrement(1);
-            if (stack.isEmpty()) {
-                Item item2 = item.getRecipeRemainder();
-                this.items.set(0, item2 == null ? ItemStack.EMPTY : new ItemStack(item2));
-            }
-
-            world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, true), 3);
-        } else if (doneBurning) {
-
-            world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, false), 3);
         }
 
+        if (!this.world.isClient) {
+            if (readyToBurn) {
+                fuelTime = getFuelTime(items.get(0));
+                burnTime = fuelTime;
+                ItemStack stack = items.get(0);
+                Item item = stack.getItem();
+                stack.decrement(1);
+                if (stack.isEmpty()) {
+                    Item item2 = item.getRecipeRemainder();
+                    this.items.set(0, item2 == null ? ItemStack.EMPTY : new ItemStack(item2));
+                }
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, true), 3);
+            } else if (doneBurning) {
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, false), 3);
+            }
 
+            if (isBurning != this.isBurning()) {
+                markDirtyAfterTick = true;
+                this.world.setBlockState(this.pos, this.world.getBlockState(this.pos).with(AbstractFurnaceBlock.LIT, this.isBurning()), 3);
+            }
+        }
+
+        if (markDirtyAfterTick) {
+            this.markDirty();
+        }
     }
 
-    protected int getFuelTime(ItemStack fuel) {
+    protected static int getFuelTime(ItemStack fuel) {
         if (fuel.isEmpty()) {
             return 0;
         } else {
@@ -178,4 +206,6 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
     public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
         buf.writeBlockPos(pos);
     }
+
+
 }
