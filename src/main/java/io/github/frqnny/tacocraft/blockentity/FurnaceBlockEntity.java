@@ -91,23 +91,6 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
         return super.toTag(tag);
     }
 
-    /*
-    @Override
-    public void fromClientTag(CompoundTag tag) {
-        this.burnTime = tag.getShort("BurnTime");
-        this.fuelTime = tag.getShort("FuelTime");
-        Inventories.fromTag(tag, items);
-    }
-
-    @Override
-    public CompoundTag toClientTag(CompoundTag tag) {
-        tag.putShort("BurnTime", (short) this.burnTime);
-        tag.putShort("FuelTime", (short) this.burnTime);
-        Inventories.toTag(tag, items);
-        return tag;
-    }
-
-     */
     @Override
     public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
         return this;

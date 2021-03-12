@@ -57,6 +57,7 @@ public class FurnaceBlock extends AbstractFurnaceBlock {
             world.addParticle(ParticleTypes.SMOKE, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
             world.addParticle(ParticleTypes.FLAME, d + i, e + j, f + k, 0.0D, 0.0D, 0.0D);
             world.addParticle(ParticleTypes.SMOKE, d, e + 1.0D, f, 0.0D, 0.0D, 0.0D);
+            world.addParticle(ParticleTypes.FLAME, d, e + 1.0D, f, 0.0D, 0.0D, 0.0D);
         }
     }
 
