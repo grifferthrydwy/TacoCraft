@@ -22,7 +22,7 @@ import java.util.function.ToIntFunction;
 public class ModBlocks {
     public static final Block FURNACE_BLOCK = new FurnaceBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.5F).lightLevel(createLightLevelFromBlockState()));
     public static final Block COMAL = new ComalBlock(FabricBlockSettings.of(Material.SUPPORTED));
-    public static final Block CORN_BLOCK = new CornBlock(7, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
+    public static final Block CORN_BLOCK = new CornBlock(8, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
 
     public static BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY;
     public static BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY;

@@ -41,18 +41,6 @@ dependencies {
 }
 
 processResources {
-	inputs.property "version", project.version
-
-	from(sourceSets.main.resources.srcDirs) {
-		include "fabric.mod.json"
-		expand "version": project.version
-	}
-
-	from(sourceSets.main.resources.srcDirs) {
-		exclude "fabric.mod.json"
-	}
-	// Minifies all .json files when building the mod.
-	// Source files are not minified, only the jar copies.
 	doLast {
 
 		def jsonMinifyStart = System.currentTimeMillis()
