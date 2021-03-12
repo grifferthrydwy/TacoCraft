@@ -2,6 +2,7 @@ package io.github.frqnny.tacocraft.init;
 
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.item.TacoHelper;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.FoodComponents;
@@ -39,6 +40,9 @@ public class ModItems {
         Registry.register(Registry.ITEM, TacoCraft.id("cheesy_taco"), CHEESY_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("crunchy_taco"), CRUNCHY_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("golden_taco"), GOLDEN_TACO);
+
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.CORN_SEED, 0.3F);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.CORN, 0.65F);
     }
 
 }

@@ -27,22 +27,10 @@
       "io.github.frqnny.tacocraft.config.Config"
     ]
   },
-  "mixins": [
-    "tacocraft.mixins.json"
-  ],
-  "custom": {
-    "modupdater": {
-      "strategy": "json",
-      "url": "https://raw.githubusercontent.com/franiscoder/ModInfo/master/TacoCraft.json"
-    }
-  },
   "depends": {
-    "fabricloader": ">=0.8.9",
+    "fabricloader": ">=0.11.2",
     "fabric": "*",
     "minecraft": "1.16.x",
-    "libgui": ">=2.2.0"
-  },
-  "suggests": {
-    "flamingo": "*"
+    "libgui": ">=3.3.5"
   }
 }

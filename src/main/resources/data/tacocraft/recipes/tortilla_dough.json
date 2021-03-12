@@ -2,10 +2,10 @@
   "type": "crafting_shapeless",
   "ingredients": [
     {
-      "item": "tacocraft:corn"
+      "tag": "c:corn"
     },
     {
-      "item": "tacocraft:corn"
+      "tag": "c:corn"
     }
   ],
   "result": {
