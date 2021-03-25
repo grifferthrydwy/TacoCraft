@@ -8,12 +8,8 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
-
-minecraft {
-}
 
 dependencies {
 	//to change the versions see the gradle.properties file
@@ -24,20 +20,12 @@ dependencies {
 	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
 	// Dependencies
-	modImplementation "io.github.cottonmc:LibGui:${project.libgui_version}"
-	include "io.github.cottonmc:LibGui:${project.libgui_version}"
+	modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 
 	//It's how Spice of Fabric does it idk
-	include "${project.tweed_maven}:${project.tweed_version}"
-	modImplementation ("${project.tweed_maven}:${project.tweed_version}") {
-		exclude group: ("net.fabricmc.fabric-api")
-		exclude module: "modmenu"
-		exclude module: "config-2"
-		exclude module: "basic-math"
-	}
 
-	//modImplementation "io.github.Linguardium:WanderingTradesmen:${project.tradesment_version}"
-	//include "io.github.Linguardium:WanderingTradesmen:${project.tradesment_version}"
+	modImplementation "com.github.Draylar.omega-config:omega-config-base:${project.config_version}"
+	include "com.github.Draylar.omega-config:omega-config-base:${project.config_version}:min"
 }
 
 processResources {

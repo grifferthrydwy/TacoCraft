@@ -22,9 +22,6 @@
     ],
     "client": [
       "io.github.frqnny.tacocraft.TacoCraftClient"
-    ],
-    "tweed:config": [
-      "io.github.frqnny.tacocraft.config.Config"
     ]
   },
   "depends": {

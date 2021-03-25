@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "tacocraft:block/corn_brick_top",
+    "front": "tacocraft:block/corn_brick",
+    "side": "tacocraft:block/corn_brick"
+  }
+}

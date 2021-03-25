@@ -3,6 +3,8 @@ package io.github.frqnny.tacocraft;
 import io.github.frqnny.tacocraft.client.gui.FurnaceGUI;
 import io.github.frqnny.tacocraft.client.gui.FurnaceScreen;
 import io.github.frqnny.tacocraft.client.render.ComalBlockEntityRenderer;
+import io.github.frqnny.tacocraft.client.render.OpenPotBlockEntityRenderer;
+import io.github.frqnny.tacocraft.client.render.PencaBlockEntityRenderer;
 import io.github.frqnny.tacocraft.init.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -22,5 +24,7 @@ public class TacoCraftClient implements ClientModInitializer {
         ScreenRegistry.register(TacoCraft.Furnace, screenFactory);
 
         BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.COMAL_BLOCK_ENTITY, ComalBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.PENCA_BLOCK_ENTITY, PencaBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.OPEN_POT_BLOCK_ENTITY, OpenPotBlockEntityRenderer::new);
     }
 }

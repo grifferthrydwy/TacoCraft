@@ -1,8 +1,9 @@
 {
-  "parent": "block/orientable",
+  "parent": "block/orientable_with_bottom",
   "textures": {
     "top": "tacocraft:block/furnace_side_top_off",
     "front": "tacocraft:block/furnace_front_off",
-    "side": "tacocraft:block/furnace_side"
+    "side": "tacocraft:block/furnace_side",
+    "bottom": "tacocraft:block/furnace_side"
   }
 }

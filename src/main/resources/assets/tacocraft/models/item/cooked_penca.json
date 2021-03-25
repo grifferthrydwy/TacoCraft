@@ -1,0 +1,7 @@
+{
+  "parent": "tacocraft:item/closed_penca",
+  "textures": {
+    "0": "tacocraft:item/cooked_penca",
+    "particle": "tacocraft:item/cooked_penca"
+  }
+}

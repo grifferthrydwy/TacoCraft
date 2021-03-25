@@ -34,8 +34,6 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
 
     public static final IntProperty AGE = Properties.AGE_7;
     public static final EnumProperty<DoubleBlockHalf> HALF = Properties.DOUBLE_BLOCK_HALF;
-    public static int growthDelay;
-
     private static final VoxelShape[] BOTTOM_AGES = new VoxelShape[]{
             Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 5.0D, 16.0D),
             Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 11.0D, 16.0D),
@@ -57,6 +55,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
             Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
             Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)
     };
+    public static int growthDelay;
 
     public CornBlock(int delay, Settings s) {
         super(s);
@@ -125,6 +124,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
                 world.setBlockState(pos.up(), this.withAge(6).with(HALF, DoubleBlockHalf.UPPER));
                 world.setBlockState(pos, this.withAge(6).with(HALF, DoubleBlockHalf.LOWER));
             }
+            return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
     }

@@ -1,10 +1,13 @@
 package io.github.frqnny.tacocraft.item;
 
 import io.github.frqnny.tacocraft.TacoCraft;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 
 public class TacoHelper {
+    public static final FoodComponent BARBACOA = new FoodComponent.Builder().hunger(10).saturationModifier(1.5F).meat().build();
+
     public static FoodComponent createFoodComponent(FoodComponent baseMeat) {
         return createFoodComponent(baseMeat, 0, 0);
     }
@@ -18,6 +21,6 @@ public class TacoHelper {
     }
 
     public static Item createTaco(FoodComponent foodComponent) {
-        return new Item(new Item.Settings().group(TacoCraft.ITEM_GROUP).food(foodComponent));
+        return new Item(new FabricItemSettings().group(TacoCraft.ITEM_GROUP).food(foodComponent));
     }
 }

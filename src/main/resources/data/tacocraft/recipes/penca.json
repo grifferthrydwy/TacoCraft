@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "###",
+    "HHH"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:leaves"
+    },
+    "H": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "tacocraft:penca"
+  }
+}

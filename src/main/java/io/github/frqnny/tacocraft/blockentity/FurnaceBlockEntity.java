@@ -4,7 +4,6 @@ import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import io.github.frqnny.tacocraft.block.inventory.FurnaceInventory;
 import io.github.frqnny.tacocraft.client.gui.FurnaceGUI;
 import io.github.frqnny.tacocraft.init.ModBlocks;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.AbstractFurnaceBlock;
 import net.minecraft.block.BlockState;
@@ -68,6 +67,15 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
 
     public FurnaceBlockEntity() {
         super(ModBlocks.FURNACE_BLOCK_ENTITY);
+    }
+
+    protected static int getFuelTime(ItemStack fuel) {
+        if (fuel.isEmpty()) {
+            return 0;
+        } else {
+            Item item = fuel.getItem();
+            return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(item, 0);
+        }
     }
 
     @Override
@@ -141,15 +149,6 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
 
         if (markDirtyAfterTick) {
             this.markDirty();
-        }
-    }
-
-    protected static int getFuelTime(ItemStack fuel) {
-        if (fuel.isEmpty()) {
-            return 0;
-        } else {
-            Item item = fuel.getItem();
-            return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(item, 0);
         }
     }
 

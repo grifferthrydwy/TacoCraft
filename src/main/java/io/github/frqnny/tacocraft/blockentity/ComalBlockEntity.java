@@ -1,5 +1,6 @@
 package io.github.frqnny.tacocraft.blockentity;
 
+import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.init.ModBlocks;
 import io.github.frqnny.tacocraft.init.ModItems;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
@@ -54,7 +55,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, BlockEnti
     }
 
     public void startCooking() {
-        cookTime = 300;
+        cookTime = TacoCraft.config.tortilla_cook_time;
         setCanRender();
         sync();
     }
