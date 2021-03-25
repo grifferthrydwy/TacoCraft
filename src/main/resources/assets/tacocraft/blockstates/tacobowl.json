@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "size=1": {
+      "model": "tacocraft:block/tacobowl/tacobowl_1"
+    },
+    "size=2": {
+      "model": "tacocraft:block/tacobowl/tacobowl_2"
+    },
+    "size=3": {
+      "model": "tacocraft:block/tacobowl/tacobowl_3"
+    },
+    "size=4": {
+      "model": "tacocraft:block/tacobowl/tacobowl_4"
+    },
+    "size=5": {
+      "model": "tacocraft:block/tacobowl/tacobowl_5"
+    },
+    "size=6": {
+      "model": "tacocraft:block/tacobowl/tacobowl_6"
+    }
+  }
+}

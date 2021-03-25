@@ -1,10 +1,7 @@
 package io.github.frqnny.tacocraft.init;
 
 import io.github.frqnny.tacocraft.TacoCraft;
-import io.github.frqnny.tacocraft.block.ComalBlock;
-import io.github.frqnny.tacocraft.block.FurnaceBlock;
-import io.github.frqnny.tacocraft.block.OpenPotBlock;
-import io.github.frqnny.tacocraft.block.PencaBlock;
+import io.github.frqnny.tacocraft.block.*;
 import io.github.frqnny.tacocraft.block.crop.CornBlock;
 import io.github.frqnny.tacocraft.blockentity.ComalBlockEntity;
 import io.github.frqnny.tacocraft.blockentity.FurnaceBlockEntity;
@@ -29,6 +26,7 @@ public class ModBlocks {
     public static final Block CORN_BRICK = new Block(FabricBlockSettings.copyOf(Blocks.BRICKS));
     public static final Block OPEN_POT = new OpenPotBlock(FabricBlockSettings.copyOf(Blocks.CAULDRON));
     public static final Block PENCA = new PencaBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
+    public static final Block TACO_BOWL = new TacoBowlBlock(FabricBlockSettings.copyOf(Blocks.CAKE));
 
     public static BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = BlockEntityType.Builder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build(null);
     public static BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = BlockEntityType.Builder.create(ComalBlockEntity::new, COMAL).build(null);
@@ -42,6 +40,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, OpenPotBlock.ID, OPEN_POT);
         Registry.register(Registry.BLOCK, PencaBlock.ID, PENCA);
         Registry.register(Registry.BLOCK, TacoCraft.id("corn_brick"), CORN_BRICK);
+        Registry.register(Registry.BLOCK, TacoBowlBlock.ID, TACO_BOWL);
         registerBlockEntities();
     }
 

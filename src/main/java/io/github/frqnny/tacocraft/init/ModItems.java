@@ -1,10 +1,7 @@
 package io.github.frqnny.tacocraft.init;
 
 import io.github.frqnny.tacocraft.TacoCraft;
-import io.github.frqnny.tacocraft.block.ComalBlock;
-import io.github.frqnny.tacocraft.block.FurnaceBlock;
-import io.github.frqnny.tacocraft.block.OpenPotBlock;
-import io.github.frqnny.tacocraft.block.PencaBlock;
+import io.github.frqnny.tacocraft.block.*;
 import io.github.frqnny.tacocraft.item.CookedPencaItem;
 import io.github.frqnny.tacocraft.item.DivineCornBladeItem;
 import io.github.frqnny.tacocraft.item.TacoHelper;
@@ -42,6 +39,7 @@ public class ModItems {
     public static final Item OPEN_POT_BLOCK = new BlockItem(ModBlocks.OPEN_POT, new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
     public static final Item PENCA_BLOCK = new BlockItem(ModBlocks.PENCA, new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
     public static final Item CORN_BRICK_BLOCK = new BlockItem(ModBlocks.CORN_BRICK, new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
+    public static final Item TACO_BOWL = new BlockItem(ModBlocks.TACO_BOWL, new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
 
     public static void registerItems() {
         Registry.register(Registry.ITEM, TacoCraft.id("corn_seed"), CORN_SEED);
@@ -72,6 +70,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, OpenPotBlock.ID, OPEN_POT_BLOCK);
         Registry.register(Registry.ITEM, PencaBlock.ID, PENCA_BLOCK);
         Registry.register(Registry.ITEM, TacoCraft.id("corn_brick"), CORN_BRICK_BLOCK);
+        Registry.register(Registry.ITEM, TacoBowlBlock.ID, TACO_BOWL);
 
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.CORN_SEED, 0.3F);
         ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(ModItems.CORN, 0.65F);
