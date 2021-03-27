@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "io.github.frqnny.tacocraft.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinFarmerVillagerTask",
+    "MixinFarmerWorkTask",
+    "MixinVillagerEntity"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

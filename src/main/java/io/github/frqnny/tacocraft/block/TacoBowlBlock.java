@@ -21,7 +21,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 public class TacoBowlBlock extends Block {
-    public static final VoxelShape SHAPE = Block.createCuboidShape(2,0,2, 14, 6, 14);
+    public static final VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 6, 14);
 
     public static final Identifier ID = TacoCraft.id("tacobowl");
 

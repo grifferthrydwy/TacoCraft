@@ -24,9 +24,10 @@
       "io.github.frqnny.tacocraft.TacoCraftClient"
     ]
   },
+  "mixins": [
+    "tacocraft.mixins.json"
+  ],
   "depends": {
-    "fabricloader": ">=0.11.2",
-    "fabric": "*",
     "minecraft": "1.16.x",
     "libgui": ">=3.3.5"
   }

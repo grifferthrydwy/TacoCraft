@@ -1,10 +1,14 @@
 package io.github.frqnny.tacocraft.init;
 
+import draylar.structurized.api.StructurePoolAddCallback;
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.world.CornFieldFeature;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.ModificationPhase;
+import net.minecraft.structure.pool.StructurePool;
+import net.minecraft.structure.pool.StructurePoolElement;
+import net.minecraft.structure.processor.StructureProcessorLists;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -25,6 +29,12 @@ public class ModGen {
         Registry.register(Registry.FEATURE, TacoCraft.id("feature"), CORN_FEATURE);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, TacoCraft.id("feature_configured"), CONFIGURED_CORN_FEATURE);
         putFeatures();
+
+        StructurePoolAddCallback.EVENT.register(structurePool -> {
+            if (structurePool.getStructurePool().getId().toString().contains("minecraft:village/plains/houses")) {
+                structurePool.addStructurePoolElement(StructurePoolElement.method_30426("tacocraft:plains_corn_farm", StructureProcessorLists.FARM_PLAINS).apply(StructurePool.Projection.RIGID));
+            }
+        });
     }
 
     public static void putFeatures() {

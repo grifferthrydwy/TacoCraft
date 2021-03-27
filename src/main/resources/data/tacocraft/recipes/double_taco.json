@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tacocraft:tortilla"
+    },
+    {
+      "item": "tacocraft:tortilla"
+    },
+    {
+      "item": "minecraft:cooked_beef"
+    }
+  ],
+  "result": {
+    "item": "tacocraft:double_taco",
+    "count": 1
+  }
+}

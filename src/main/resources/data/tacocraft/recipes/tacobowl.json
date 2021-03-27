@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "CCC"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:cooked_beef"
+    },
+    "C": {
+      "tag": "c:corn"
+    }
+  },
+  "result": {
+    "item": "tacocraft:tacobowl"
+  }
+}
