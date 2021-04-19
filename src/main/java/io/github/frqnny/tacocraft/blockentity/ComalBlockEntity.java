@@ -85,19 +85,20 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, BlockEnti
     }
 
     public void setCanRender() {
-        boolean old = canRender;
-        canRender = !old;
+        canRender = !canRender;
     }
 
     @Override
     public void tick() {
-        if (isCooking()) {
-            --cookTime;
-        } else if (cookTime == 0) {
-            doneCooking = true;
-            --cookTime;
-            hasTortilla = false;
-            sync();
+        if (!this.world.isClient) {
+            if (isCooking()) {
+                --cookTime;
+            } else if (cookTime == 0) {
+                doneCooking = true;
+                --cookTime;
+                hasTortilla = false;
+                sync();
+            }
         }
     }
 }
