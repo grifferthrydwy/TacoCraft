@@ -8,6 +8,7 @@ import io.github.frqnny.tacocraft.blockentity.FurnaceBlockEntity;
 import io.github.frqnny.tacocraft.blockentity.OpenPotBlockEntity;
 import io.github.frqnny.tacocraft.blockentity.PencaBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -21,17 +22,17 @@ import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final Block FURNACE_BLOCK = new FurnaceBlock(FabricBlockSettings.of(Material.STONE).requiresTool().strength(3.5F).lightLevel(createLightLevelFromBlockState()));
-    public static final Block COMAL = new ComalBlock(FabricBlockSettings.of(Material.SUPPORTED));
+    public static final Block COMAL = new ComalBlock(FabricBlockSettings.of(Material.DECORATION));
     public static final Block CORN_BLOCK = new CornBlock(8, FabricBlockSettings.of(Material.PLANT).nonOpaque().noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP));
     public static final Block CORN_BRICK = new Block(FabricBlockSettings.copyOf(Blocks.BRICKS));
     public static final Block OPEN_POT = new OpenPotBlock(FabricBlockSettings.copyOf(Blocks.CAULDRON));
     public static final Block PENCA = new PencaBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
     public static final Block TACO_BOWL = new TacoBowlBlock(FabricBlockSettings.copyOf(Blocks.CAKE));
 
-    public static BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = BlockEntityType.Builder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build(null);
-    public static BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = BlockEntityType.Builder.create(ComalBlockEntity::new, COMAL).build(null);
-    public static BlockEntityType<OpenPotBlockEntity> OPEN_POT_BLOCK_ENTITY = BlockEntityType.Builder.create(OpenPotBlockEntity::new, OPEN_POT).build(null);
-    public static BlockEntityType<PencaBlockEntity> PENCA_BLOCK_ENTITY = BlockEntityType.Builder.create(PencaBlockEntity::new, PENCA).build(null);
+    public static BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build(null);
+    public static BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(ComalBlockEntity::new, COMAL).build(null);
+    public static BlockEntityType<OpenPotBlockEntity> OPEN_POT_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(OpenPotBlockEntity::new, OPEN_POT).build(null);
+    public static BlockEntityType<PencaBlockEntity> PENCA_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(PencaBlockEntity::new, PENCA).build(null);
 
     public static void registerBlocks() {
         Registry.register(Registry.BLOCK, FurnaceBlock.ID, FURNACE_BLOCK);

@@ -2,9 +2,12 @@ package io.github.frqnny.tacocraft.block;
 
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.blockentity.ComalBlockEntity;
+import io.github.frqnny.tacocraft.init.ModBlocks;
 import io.github.frqnny.tacocraft.init.ModItems;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -26,8 +29,8 @@ public class ComalBlock extends BlockWithEntity {
 
     @Nullable
     @Override
-    public BlockEntity createBlockEntity(BlockView view) {
-        return new ComalBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new ComalBlockEntity(pos, state);
     }
 
     @Override
@@ -47,8 +50,7 @@ public class ComalBlock extends BlockWithEntity {
         }
         BlockEntity be = world.getBlockEntity(pos);
 
-        if (be instanceof ComalBlockEntity) {
-            ComalBlockEntity comal = (ComalBlockEntity) be;
+        if (be instanceof ComalBlockEntity comal) {
 
             boolean handIsTortillaDough = player.getStackInHand(hand).copy().getItem() == ModItems.TORTILLA_DOUGH;
             boolean itemIsNotCooking = !comal.isCooking();
@@ -70,4 +72,9 @@ public class ComalBlock extends BlockWithEntity {
         return ActionResult.PASS;
     }
 
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, ModBlocks.COMAL_BLOCK_ENTITY, ComalBlockEntity::tick);
+    }
 }

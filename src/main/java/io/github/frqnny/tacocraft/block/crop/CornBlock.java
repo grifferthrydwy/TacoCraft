@@ -195,7 +195,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
     }
 
     @Override
-    public void placeAt(WorldAccess world, BlockPos pos, int flags) {
+    public void placeAt(WorldAccess world, BlockState state, BlockPos pos, int flags) {
         world.setBlockState(pos, this.getDefaultState().with(HALF, DoubleBlockHalf.LOWER), flags);
     }
 

@@ -18,6 +18,7 @@ import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
+import org.spongepowered.asm.mixin.Final;
 
 public class ModGen {
     public static final Feature<DefaultFeatureConfig> CORN_FEATURE = new CornFieldFeature();
@@ -35,6 +36,8 @@ public class ModGen {
                 structurePool.addStructurePoolElement(StructurePoolElement.method_30426("tacocraft:plains_corn_farm", StructureProcessorLists.FARM_PLAINS).apply(StructurePool.Projection.RIGID));
             }
         });
+
+
     }
 
     public static void putFeatures() {

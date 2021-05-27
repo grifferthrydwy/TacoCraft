@@ -17,6 +17,9 @@ public class TacoCraftConfig implements Config {
     @Syncing
     public int tortilla_cook_time = 300;
 
+    @Comment("Amount of barbacoa you get from one penca")
+    public int barbacoa_per_penca = 7;
+
     @Override
     public String getName() {
         return "tacocraft";

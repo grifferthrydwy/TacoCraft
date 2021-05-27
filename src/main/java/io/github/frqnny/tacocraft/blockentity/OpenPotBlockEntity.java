@@ -7,44 +7,44 @@ import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.util.Tickable;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.Set;
 
-public class OpenPotBlockEntity extends BlockEntity implements Tickable, BlockEntityClientSerializable {
+public class OpenPotBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
     public int closed_pancas = 0;
     public boolean finished = false;
     public int tick = 0;
     protected boolean ready = false;
     protected boolean cooking = false;
 
-    public OpenPotBlockEntity() {
-        super(ModBlocks.OPEN_POT_BLOCK_ENTITY);
+    public OpenPotBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlocks.OPEN_POT_BLOCK_ENTITY, pos, state);
     }
 
 
-    @Override
-    public void tick() {
-        if (ready) {
-            if (this.canStartCooking()) {
-                tick = TacoCraft.config.penca_cook_time;
-                ready = false;
-                cooking = true;
+    public static void tick(World world, BlockPos pos, BlockState state, OpenPotBlockEntity be) {
+        if (be.ready) {
+            if (be.canStartCooking()) {
+                be.tick = TacoCraft.config.penca_cook_time;
+                be.ready = false;
+                be.cooking = true;
 
                 if (!world.isClient) {
-                    sync();
+                    be.sync();
                 }
             }
-        } else if (cooking) {
-            tick--;
-            if (tick == 0) {
-                cooking = false;
-                finished = true;
+        } else if (be.cooking) {
+            be.tick--;
+            if (be.tick == 0) {
+                be.cooking = false;
+                be.finished = true;
                 world.setBlockState(pos.up(), Blocks.COARSE_DIRT.getDefaultState());
                 if (!world.isClient) {
-                    sync();
+                    be.sync();
                 }
             }
         }
@@ -52,8 +52,8 @@ public class OpenPotBlockEntity extends BlockEntity implements Tickable, BlockEn
 
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         closed_pancas = tag.getInt("ClosedPancas");
         tick = tag.getInt("Tick");
         ready = tag.getBoolean("Ready");
@@ -61,8 +61,8 @@ public class OpenPotBlockEntity extends BlockEntity implements Tickable, BlockEn
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public NbtCompound writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         tag.putInt("ClosedPancas", closed_pancas);
         tag.putInt("Tick", tick);
         tag.putBoolean("Ready", ready);
@@ -98,7 +98,7 @@ public class OpenPotBlockEntity extends BlockEntity implements Tickable, BlockEn
     }
 
     @Override
-    public void fromClientTag(CompoundTag tag) {
+    public void fromClientTag(NbtCompound tag) {
         closed_pancas = tag.getInt("ClosedPancas");
         tick = tag.getInt("Tick");
         ready = tag.getBoolean("Ready");
@@ -106,7 +106,7 @@ public class OpenPotBlockEntity extends BlockEntity implements Tickable, BlockEn
     }
 
     @Override
-    public CompoundTag toClientTag(CompoundTag tag) {
+    public NbtCompound toClientTag(NbtCompound tag) {
         tag.putInt("ClosedPancas", closed_pancas);
         tag.putInt("Tick", tick);
         tag.putBoolean("Ready", ready);

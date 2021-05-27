@@ -55,8 +55,7 @@ public abstract class MixinFarmerVillagerTask {
             if (this.currentTarget.isWithinDistance(villagerEntity.getPos(), 1.0D)) {
                 BlockState state = world.getBlockState(this.currentTarget);
                 Block block = state.getBlock();
-                if (block instanceof CornBlock && state.get(CornBlock.AGE).equals(7)) {
-                    CornBlock corn = (CornBlock) block;
+                if (block instanceof CornBlock corn && state.get(CornBlock.AGE).equals(7)) {
                     int count = world.random.nextInt(3) + 1;
                     ItemScatterer.spawn(world, currentTarget.getX(), currentTarget.getY(), currentTarget.getZ(), new ItemStack(ModItems.CORN, count));
                     if (state.get(CornBlock.HALF).equals(DoubleBlockHalf.UPPER)) {
@@ -73,7 +72,6 @@ public abstract class MixinFarmerVillagerTask {
 
                     for (int i = 0; i < simpleInventory.size(); ++i) {
                         ItemStack itemStack = simpleInventory.getStack(i);
-                        boolean bl = false;
                         if (!itemStack.isEmpty()) {
                             if (itemStack.getItem() == ModItems.CORN_SEED) {
 

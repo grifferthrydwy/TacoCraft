@@ -33,10 +33,9 @@ public class PencaBlock extends BlockWithEntity {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (!world.isClient) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if (!(blockEntity instanceof PencaBlockEntity)) {
+            if (!(blockEntity instanceof PencaBlockEntity pencaBe)) {
                 return ActionResult.FAIL;
             }
-            PencaBlockEntity pencaBe = ((PencaBlockEntity) blockEntity);
 
 
             ItemStack stack = player.getStackInHand(hand);
@@ -74,8 +73,8 @@ public class PencaBlock extends BlockWithEntity {
 
     @Nullable
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new PencaBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new PencaBlockEntity(pos, state);
     }
 
     @Override

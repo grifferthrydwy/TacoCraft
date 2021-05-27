@@ -2,6 +2,7 @@ package io.github.frqnny.tacocraft.block;
 
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.blockentity.OpenPotBlockEntity;
+import io.github.frqnny.tacocraft.init.ModBlocks;
 import io.github.frqnny.tacocraft.init.ModItems;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.block.BlockRenderType;
@@ -9,6 +10,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +22,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -65,8 +67,8 @@ public class OpenPotBlock extends BlockWithEntity {
 
     @Nullable
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new OpenPotBlockEntity();
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new OpenPotBlockEntity(pos, state);
     }
 
     @Override
@@ -78,10 +80,9 @@ public class OpenPotBlock extends BlockWithEntity {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 
         if (!world.isClient) {
-            if (!(world.getBlockEntity(pos) instanceof OpenPotBlockEntity)) {
+            if (!(world.getBlockEntity(pos) instanceof OpenPotBlockEntity be)) {
                 return ActionResult.FAIL;
             }
-            OpenPotBlockEntity be = ((OpenPotBlockEntity) world.getBlockEntity(pos));
             if (isSetupReady(world, pos) && be.closed_pancas == 2 && player.getStackInHand(hand).isEmpty() && !be.finished) {
                 be.letsgetreadybois();
                 be.sync();
@@ -106,5 +107,11 @@ public class OpenPotBlock extends BlockWithEntity {
 
         }
         return ActionResult.FAIL;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return checkType(type, ModBlocks.OPEN_POT_BLOCK_ENTITY, OpenPotBlockEntity::tick);
     }
 }

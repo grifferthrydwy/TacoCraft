@@ -14,9 +14,9 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.ConstantLootTableRange;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
@@ -31,15 +31,11 @@ public class TacoCraft implements ModInitializer {
 
     public static ScreenHandlerType<FurnaceGUI> Furnace;
 
-    public static TacoCraftConfig config;
+    public static TacoCraftConfig config = OmegaConfig.register(TacoCraftConfig.class);
 
 
     public static Identifier id(String string) {
         return new Identifier(MODID, string);
-    }
-
-    public static void registerConfig() {
-        config = OmegaConfig.register(TacoCraftConfig.class);
     }
 
     @Override
@@ -47,13 +43,12 @@ public class TacoCraft implements ModInitializer {
         ModBlocks.registerBlocks();
         ModItems.registerItems();
         ModGen.register();
-        registerConfig();
 
         if (config.addCornSeedsToGrassLootTable) {
             LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
                 if (TacoCraft.GRASS_LOOT_TABLE_ID.equals(id)) {
                     FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                            .rolls(ConstantLootTableRange.create(1))
+                            .rolls(ConstantLootNumberProvider.create(1))
                             .withEntry(ItemEntry.builder(ModItems.CORN_SEED).build())
                             .withCondition(RandomChanceLootCondition.builder(0.125F).build());
 

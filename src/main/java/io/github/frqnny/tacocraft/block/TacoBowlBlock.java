@@ -33,23 +33,7 @@ public class TacoBowlBlock extends Block {
         this.setDefaultState(this.getStateManager().getDefaultState().with(SIZE, 1));
     }
 
-
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-            ItemStack itemStack = player.getStackInHand(hand);
-            if (this.tryEat(world, pos, state, player).isAccepted()) {
-                return ActionResult.SUCCESS;
-            }
-
-            if (itemStack.isEmpty()) {
-                return ActionResult.CONSUME;
-            }
-        }
-
-        return this.tryEat(world, pos, state, player);
-    }
-
-    private ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
+    private static ActionResult tryEat(WorldAccess world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!player.canConsume(false)) {
             return ActionResult.PASS;
         } else {
@@ -64,6 +48,21 @@ public class TacoBowlBlock extends Block {
 
             return ActionResult.SUCCESS;
         }
+    }
+
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (world.isClient) {
+            ItemStack itemStack = player.getStackInHand(hand);
+            if (TacoBowlBlock.tryEat(world, pos, state, player).isAccepted()) {
+                return ActionResult.SUCCESS;
+            }
+
+            if (itemStack.isEmpty()) {
+                return ActionResult.CONSUME;
+            }
+        }
+
+        return TacoBowlBlock.tryEat(world, pos, state, player);
     }
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {

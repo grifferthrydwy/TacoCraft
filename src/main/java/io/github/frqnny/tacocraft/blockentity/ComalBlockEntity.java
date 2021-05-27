@@ -6,37 +6,39 @@ import io.github.frqnny.tacocraft.init.ModItems;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.Tickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.Objects;
 
-public class ComalBlockEntity extends BlockEntity implements Tickable, BlockEntityClientSerializable {
+public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
     boolean doneCooking = false;
     boolean canRender = false;
     private int cookTime = -1;
     private boolean hasTortilla = false;
 
-    public ComalBlockEntity() {
-        super(ModBlocks.COMAL_BLOCK_ENTITY);
+    public ComalBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlocks.COMAL_BLOCK_ENTITY, pos, state);
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
+    public NbtCompound writeNbt(NbtCompound tag) {
         tag.putShort("CookTime", (short) this.cookTime);
-        return super.toTag(tag);
+        return super.writeNbt(tag);
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         this.cookTime = tag.getShort("CookTime");
     }
 
     @Override
-    public void fromClientTag(CompoundTag compoundTag) {
+    public void fromClientTag(NbtCompound compoundTag) {
         if (compoundTag.getBoolean("hasTortilla")) {
             hasTortilla = true;
         }
@@ -45,7 +47,7 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, BlockEnti
     }
 
     @Override
-    public CompoundTag toClientTag(CompoundTag compoundTag) {
+    public NbtCompound toClientTag(NbtCompound compoundTag) {
         compoundTag.putBoolean("hasTortilla", hasTortilla);
         compoundTag.putBoolean("canRender", canRender);
         compoundTag.putBoolean("doneCooking", doneCooking);
@@ -88,17 +90,17 @@ public class ComalBlockEntity extends BlockEntity implements Tickable, BlockEnti
         canRender = !canRender;
     }
 
-    @Override
-    public void tick() {
-        if (!this.world.isClient) {
-            if (isCooking()) {
-                --cookTime;
-            } else if (cookTime == 0) {
-                doneCooking = true;
-                --cookTime;
-                hasTortilla = false;
-                sync();
+    public static void tick(World world, BlockPos pos, BlockState state, ComalBlockEntity be) {
+        if (!world.isClient) {
+            if (be.isCooking()) {
+                be.cookTime--;
+            } else if (be.cookTime == 0) {
+                be.doneCooking = true;
+                be.cookTime--;
+                be.hasTortilla = false;
+                be.sync();
             }
         }
     }
+
 }

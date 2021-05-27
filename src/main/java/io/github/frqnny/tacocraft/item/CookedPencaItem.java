@@ -1,5 +1,6 @@
 package io.github.frqnny.tacocraft.item;
 
+import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.init.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -21,7 +22,7 @@ public class CookedPencaItem extends Item {
         stackInHand.decrement(1);
 
         ItemStack stack = new ItemStack(ModItems.BARBACOA);
-        stack.setCount(5);
+        stack.setCount(TacoCraft.config.barbacoa_per_penca);
         ItemScatterer.spawn(world, user.getX(), user.getY(), user.getZ(), stack);
 
         return TypedActionResult.success(stackInHand, world.isClient());
