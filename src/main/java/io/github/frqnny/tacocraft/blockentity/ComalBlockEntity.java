@@ -6,7 +6,6 @@ import io.github.frqnny.tacocraft.init.ModItems;
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.ItemScatterer;
@@ -23,6 +22,19 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
 
     public ComalBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.COMAL_BLOCK_ENTITY, pos, state);
+    }
+
+    public static void tick(World world, BlockPos pos, BlockState state, ComalBlockEntity be) {
+        if (!world.isClient) {
+            if (be.isCooking()) {
+                be.cookTime--;
+            } else if (be.cookTime == 0) {
+                be.doneCooking = true;
+                be.cookTime--;
+                be.hasTortilla = false;
+                be.sync();
+            }
+        }
     }
 
     @Override
@@ -88,19 +100,6 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
 
     public void setCanRender() {
         canRender = !canRender;
-    }
-
-    public static void tick(World world, BlockPos pos, BlockState state, ComalBlockEntity be) {
-        if (!world.isClient) {
-            if (be.isCooking()) {
-                be.cookTime--;
-            } else if (be.cookTime == 0) {
-                be.doneCooking = true;
-                be.cookTime--;
-                be.hasTortilla = false;
-                be.sync();
-            }
-        }
     }
 
 }

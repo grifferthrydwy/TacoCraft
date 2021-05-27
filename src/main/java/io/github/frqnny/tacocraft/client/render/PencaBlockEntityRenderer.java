@@ -15,8 +15,6 @@ import net.minecraft.util.math.Vec3f;
 import java.util.Objects;
 
 public class PencaBlockEntityRenderer implements BlockEntityRenderer<PencaBlockEntity> {
-    public static final ItemStack STEAK_STACK = new ItemStack(Items.COOKED_BEEF);
-    public static final ItemStack PORKCHOP_STACK = new ItemStack(Items.COOKED_PORKCHOP);
 
     public PencaBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
     }

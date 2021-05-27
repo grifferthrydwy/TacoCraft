@@ -18,7 +18,6 @@ import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
-import org.spongepowered.asm.mixin.Final;
 
 public class ModGen {
     public static final Feature<DefaultFeatureConfig> CORN_FEATURE = new CornFieldFeature();

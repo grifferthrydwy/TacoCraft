@@ -10,7 +10,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.InventoryProvider;
 import net.minecraft.block.entity.AbstractFurnaceBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
@@ -39,24 +38,17 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
     public PropertyDelegate propertyDelegate = new PropertyDelegate() {
 
         public int get(int index) {
-            switch (index) {
-                case 0:
-                    return burnTime;
-                case 1:
-                    return fuelTime;
-                default:
-                    return 0;
-            }
+            return switch (index) {
+                case 0 -> burnTime;
+                case 1 -> fuelTime;
+                default -> 0;
+            };
         }
 
         public void set(int index, int value) {
             switch (index) {
-                case 0:
-                    burnTime = value;
-                    break;
-                case 1:
-                    fuelTime = value;
-                    break;
+                case 0 -> burnTime = value;
+                case 1 -> fuelTime = value;
             }
 
         }
@@ -78,42 +70,6 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
             return AbstractFurnaceBlockEntity.createFuelTimeMap().getOrDefault(item, 0);
         }
     }
-
-    @Override
-    public DefaultedList<ItemStack> getItems() {
-        return items;
-    }
-
-    @Override
-    public void readNbt(NbtCompound tag) {
-        super.readNbt(tag);
-        this.burnTime = tag.getShort("BurnTime");
-        this.fuelTime = tag.getShort("FuelTime");
-        Inventories.readNbt(tag, items);
-    }
-
-    @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
-        tag.putShort("BurnTime", (short) this.burnTime);
-        tag.putShort("FuelTime", (short) this.burnTime);
-        Inventories.writeNbt(tag, items);
-        return super.writeNbt(tag);
-    }
-
-    @Override
-    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
-        return this;
-    }
-
-    @Override
-    public PropertyDelegate getPropertyDelegate() {
-        return propertyDelegate;
-    }
-
-    public boolean isBurning() {
-        return burnTime > 0;
-    }
-
 
     public static void tick(World world, BlockPos pos, BlockState state, FurnaceBlockEntity be) {
         boolean markDirtyAfterTick = false;
@@ -151,6 +107,41 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
         if (markDirtyAfterTick) {
             be.markDirty();
         }
+    }
+
+    @Override
+    public DefaultedList<ItemStack> getItems() {
+        return items;
+    }
+
+    @Override
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
+        this.burnTime = tag.getShort("BurnTime");
+        this.fuelTime = tag.getShort("FuelTime");
+        Inventories.readNbt(tag, items);
+    }
+
+    @Override
+    public NbtCompound writeNbt(NbtCompound tag) {
+        tag.putShort("BurnTime", (short) this.burnTime);
+        tag.putShort("FuelTime", (short) this.burnTime);
+        Inventories.writeNbt(tag, items);
+        return super.writeNbt(tag);
+    }
+
+    @Override
+    public SidedInventory getInventory(BlockState state, WorldAccess world, BlockPos pos) {
+        return this;
+    }
+
+    @Override
+    public PropertyDelegate getPropertyDelegate() {
+        return propertyDelegate;
+    }
+
+    public boolean isBurning() {
+        return burnTime > 0;
     }
 
     @Override

@@ -16,17 +16,17 @@ public class FurnaceGUI extends SyncedGuiDescription {
 
         WGridPanel root = new WGridPanel();
         setRootPanel(root);
-        root.setSize(150, 150);
+        root.setSize(200, 180);
 
         WItemSlot itemSlot = WItemSlot.of(blockInventory, 0);
-        root.add(itemSlot, 4, 2);
+        root.add(itemSlot, 5, 2);
 
         WBar fire = new WBar(new Identifier("tacocraft:textures/gui/fire_background.png"), new Identifier("tacocraft:textures/gui/fire_icon.png"),
                 0, 1, WBar.Direction.UP);
         //fire.setProperties(getBlockPropertyDelegate(context));
-        root.add(fire, 4, 0);
+        root.add(fire, 5, 1);
 
-        root.add(this.createPlayerInventoryPanel(), 0, 4);
+        root.add(this.createPlayerInventoryPanel(), 1, 4);
         root.validate(this);
     }
 
