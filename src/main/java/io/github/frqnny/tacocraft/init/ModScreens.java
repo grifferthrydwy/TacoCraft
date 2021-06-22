@@ -15,6 +15,7 @@ public class ModScreens {
         FURNACE = ScreenHandlerRegistry.registerExtended(FurnaceBlock.ID, (syncId, inventory, buf) -> new FurnaceGUI(syncId, inventory, ScreenHandlerContext.create(inventory.player.world, buf.readBlockPos())));
     }
 
+    @SuppressWarnings("all")
     public static void clientInit() {
         ScreenRegistry.<FurnaceGUI, CottonInventoryScreen<FurnaceGUI>>register(ModScreens.FURNACE, (gui, inventory, title) -> new CottonInventoryScreen<>(gui, inventory.player, title));
     }

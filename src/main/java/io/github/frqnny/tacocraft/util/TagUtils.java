@@ -6,7 +6,7 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 
 public class TagUtils {
-    public static final Tag<Block> FARMLAND = TagRegistry.block(new Identifier("c","farmland"));
+    public static final Tag<Block> FARMLAND = TagRegistry.block(new Identifier("c", "farmlands"));
 
     public static void init() {
 

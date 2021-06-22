@@ -1,17 +1,16 @@
 package io.github.frqnny.tacocraft;
 
 import draylar.omegaconfig.OmegaConfig;
-import io.github.frqnny.tacocraft.block.FurnaceBlock;
-import io.github.frqnny.tacocraft.client.gui.FurnaceGUI;
 import io.github.frqnny.tacocraft.config.TacoCraftConfig;
-import io.github.frqnny.tacocraft.init.*;
+import io.github.frqnny.tacocraft.init.ModBlocks;
+import io.github.frqnny.tacocraft.init.ModEvents;
+import io.github.frqnny.tacocraft.init.ModGen;
+import io.github.frqnny.tacocraft.init.ModItems;
 import io.github.frqnny.tacocraft.util.TagUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.Identifier;
 
 public class TacoCraft implements ModInitializer {

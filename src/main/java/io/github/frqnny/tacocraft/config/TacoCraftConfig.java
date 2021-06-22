@@ -21,6 +21,10 @@ public class TacoCraftConfig implements Config {
     @Syncing
     public int barbacoa_per_penca = 7;
 
+    @Comment("Chance of corn spawning. Is in 1 per x chunks")
+    @Syncing
+    public int corn_gen_chance = 300;
+
     @Override
     public String getName() {
         return "tacocraft";

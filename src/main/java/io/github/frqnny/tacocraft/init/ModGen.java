@@ -23,7 +23,7 @@ public class ModGen {
     public static final Feature<DefaultFeatureConfig> CORN_FEATURE = new CornFieldFeature();
     public static final ConfiguredFeature<?, ?> CONFIGURED_CORN_FEATURE = CORN_FEATURE
             .configure(new DefaultFeatureConfig())
-            .decorate(Decorator.CHANCE.configure(new ChanceDecoratorConfig(100)));
+            .decorate(Decorator.CHANCE.configure(new ChanceDecoratorConfig(TacoCraft.config.corn_gen_chance)));
 
     public static void init() {
         Registry.register(Registry.FEATURE, TacoCraft.id("feature"), CORN_FEATURE);
