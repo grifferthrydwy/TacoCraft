@@ -25,21 +25,10 @@ public class ModGen {
             .configure(new DefaultFeatureConfig())
             .decorate(Decorator.CHANCE.configure(new ChanceDecoratorConfig(100)));
 
-    public static void register() {
+    public static void init() {
         Registry.register(Registry.FEATURE, TacoCraft.id("feature"), CORN_FEATURE);
         Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, TacoCraft.id("feature_configured"), CONFIGURED_CORN_FEATURE);
-        putFeatures();
 
-        StructurePoolAddCallback.EVENT.register(structurePool -> {
-            if (structurePool.getStructurePool().getId().toString().contains("minecraft:village/plains/houses")) {
-                structurePool.addStructurePoolElement(StructurePoolElement.method_30426("tacocraft:plains_corn_farm", StructureProcessorLists.FARM_PLAINS).apply(StructurePool.Projection.RIGID));
-            }
-        });
-
-
-    }
-
-    public static void putFeatures() {
         BiomeModifications
                 .create(TacoCraft.id("feature"))
                 .add(
@@ -47,7 +36,11 @@ public class ModGen {
                         BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.SAVANNA),
                         (biomeModificationContext -> biomeModificationContext.getGenerationSettings().addBuiltInFeature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, CONFIGURED_CORN_FEATURE))
                 );
+
+        StructurePoolAddCallback.EVENT.register(structurePool -> {
+            if (structurePool.getStructurePool().getId().toString().contains("minecraft:village/plains/houses")) {
+                structurePool.addStructurePoolElement(StructurePoolElement.ofProcessedLegacySingle("tacocraft:plains_corn_farm", StructureProcessorLists.FARM_PLAINS).apply(StructurePool.Projection.RIGID));
+            }
+        });
     }
-
-
 }

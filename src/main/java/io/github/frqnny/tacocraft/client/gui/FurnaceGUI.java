@@ -4,7 +4,7 @@ import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WBar;
 import io.github.cottonmc.cotton.gui.widget.WGridPanel;
 import io.github.cottonmc.cotton.gui.widget.WItemSlot;
-import io.github.frqnny.tacocraft.TacoCraft;
+import io.github.frqnny.tacocraft.init.ModScreens;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.util.Identifier;
@@ -12,7 +12,7 @@ import net.minecraft.util.Identifier;
 public class FurnaceGUI extends SyncedGuiDescription {
 
     public FurnaceGUI(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
-        super(TacoCraft.Furnace, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context));
+        super(ModScreens.FURNACE, syncId, playerInventory, getBlockInventory(context), getBlockPropertyDelegate(context));
 
         WGridPanel root = new WGridPanel();
         setRootPanel(root);

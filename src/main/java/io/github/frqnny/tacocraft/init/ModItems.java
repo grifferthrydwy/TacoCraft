@@ -41,7 +41,7 @@ public class ModItems {
     public static final Item CORN_BRICK_BLOCK = new BlockItem(ModBlocks.CORN_BRICK, new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
     public static final Item TACO_BOWL = new BlockItem(ModBlocks.TACO_BOWL, new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
 
-    public static void registerItems() {
+    public static void init() {
         Registry.register(Registry.ITEM, TacoCraft.id("corn_seed"), CORN_SEED);
         Registry.register(Registry.ITEM, TacoCraft.id("corn"), CORN);
         Registry.register(Registry.ITEM, TacoCraft.id("divine_corn_blade"), DIVINE_CORN_BLADE);
