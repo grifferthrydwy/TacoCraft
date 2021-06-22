@@ -5,6 +5,7 @@ import io.github.frqnny.tacocraft.block.FurnaceBlock;
 import io.github.frqnny.tacocraft.client.gui.FurnaceGUI;
 import io.github.frqnny.tacocraft.config.TacoCraftConfig;
 import io.github.frqnny.tacocraft.init.*;
+import io.github.frqnny.tacocraft.util.TagUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
@@ -34,5 +35,7 @@ public class TacoCraft implements ModInitializer {
         ModItems.init();
         ModGen.init();
         ModEvents.init();
+
+        TagUtils.init();
     }
 }

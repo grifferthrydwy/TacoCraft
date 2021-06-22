@@ -2,6 +2,7 @@ package io.github.frqnny.tacocraft.block.crop;
 
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.init.ModItems;
+import io.github.frqnny.tacocraft.util.TagUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
@@ -77,7 +78,7 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) {
-        return floor.getBlock() == Blocks.FARMLAND;
+        return floor.isIn(TagUtils.FARMLAND);
     }
 
     public BlockState withAge(int age) {

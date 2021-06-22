@@ -18,6 +18,7 @@ public class TacoCraftConfig implements Config {
     public int tortilla_cook_time = 300;
 
     @Comment("Amount of barbacoa you get from one penca")
+    @Syncing
     public int barbacoa_per_penca = 7;
 
     @Override

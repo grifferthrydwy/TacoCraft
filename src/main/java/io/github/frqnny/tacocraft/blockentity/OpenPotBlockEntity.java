@@ -101,6 +101,7 @@ public class OpenPotBlockEntity extends BlockEntity implements BlockEntityClient
         closed_pancas = tag.getInt("ClosedPancas");
         tick = tag.getInt("Tick");
         ready = tag.getBoolean("Ready");
+        finished = tag.getBoolean("Finished");
         cooking = tag.getBoolean("Cooking");
     }
 
@@ -109,6 +110,7 @@ public class OpenPotBlockEntity extends BlockEntity implements BlockEntityClient
         tag.putInt("ClosedPancas", closed_pancas);
         tag.putInt("Tick", tick);
         tag.putBoolean("Ready", ready);
+        tag.putBoolean("Finished", finished);
         tag.putBoolean("Cooking", cooking);
         return tag;
     }

@@ -19,7 +19,7 @@ public class DivineCornBladeItem extends SwordItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         Random random = target.getRandom();
         if (random.nextBoolean()) {
-            target.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 5));
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 20));
         }
         return super.postHit(stack, target, attacker);
     }
