@@ -2,11 +2,7 @@ package io.github.frqnny.tacocraft;
 
 import draylar.omegaconfig.OmegaConfig;
 import io.github.frqnny.tacocraft.config.TacoCraftConfig;
-import io.github.frqnny.tacocraft.init.ModBlocks;
-import io.github.frqnny.tacocraft.init.ModEvents;
-import io.github.frqnny.tacocraft.init.ModGen;
-import io.github.frqnny.tacocraft.init.ModItems;
-import io.github.frqnny.tacocraft.util.TagUtils;
+import io.github.frqnny.tacocraft.init.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.minecraft.item.ItemGroup;
@@ -21,7 +17,7 @@ public class TacoCraft implements ModInitializer {
     );
     public static final Identifier GRASS_LOOT_TABLE_ID = new Identifier("minecraft", "blocks/grass");
 
-    public static TacoCraftConfig config = OmegaConfig.register(TacoCraftConfig.class);
+    public static final TacoCraftConfig CONFIG = OmegaConfig.register(TacoCraftConfig.class);
 
 
     public static Identifier id(String string) {
@@ -34,7 +30,7 @@ public class TacoCraft implements ModInitializer {
         ModItems.init();
         ModGen.init();
         ModEvents.init();
+        ModScreens.init();
 
-        TagUtils.init();
     }
 }

@@ -22,7 +22,7 @@ public class CookedPencaItem extends Item {
         stackInHand.decrement(1);
 
         ItemStack stack = new ItemStack(ModItems.BARBACOA);
-        stack.setCount(TacoCraft.config.barbacoa_per_penca);
+        stack.setCount(TacoCraft.CONFIG.barbacoa_per_penca);
         ItemScatterer.spawn(world, user.getX(), user.getY(), user.getZ(), stack);
 
         return TypedActionResult.success(stackInHand, world.isClient());

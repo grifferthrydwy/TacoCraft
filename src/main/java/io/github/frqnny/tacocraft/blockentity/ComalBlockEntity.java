@@ -69,7 +69,7 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
     }
 
     public void startCooking() {
-        cookTime = TacoCraft.config.tortilla_cook_time;
+        cookTime = TacoCraft.CONFIG.tortilla_cook_time;
         setCanRender();
         sync();
     }

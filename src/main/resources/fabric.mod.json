@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tacocraft",
-  "version": "1.6.2+mc.1.17",
+  "version": "1.6.3+mc.1.17",
   "name": "TacoCraft",
   "description": "Adds tacos to Minecraft!",
   "authors": [

@@ -10,7 +10,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 public class ModEvents {
 
     public static void init() {
-        if (TacoCraft.config.addCornSeedsToGrassLootTable) {
+        if (TacoCraft.CONFIG.addCornSeedsToGrassLootTable) {
             LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
                 if (TacoCraft.GRASS_LOOT_TABLE_ID.equals(id)) {
                     FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()

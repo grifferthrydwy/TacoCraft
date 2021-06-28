@@ -15,6 +15,9 @@ import net.minecraft.util.math.Vec3f;
 import java.util.Objects;
 
 public class PencaBlockEntityRenderer implements BlockEntityRenderer<PencaBlockEntity> {
+    public static final ItemStack COOKED_BEEF = new ItemStack(Items.COOKED_BEEF);
+    public static final ItemStack COOKED_PORKCHOP = new ItemStack(Items.COOKED_PORKCHOP);
+
 
     public PencaBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
     }
@@ -30,15 +33,13 @@ public class PencaBlockEntityRenderer implements BlockEntityRenderer<PencaBlockE
         int steaks = entity.steaks;
 
         for (int i = 0; i < steaks; i++) {
-            ItemStack stack = new ItemStack(Items.COOKED_BEEF);
-            MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+            MinecraftClient.getInstance().getItemRenderer().renderItem(COOKED_BEEF, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
             matrices.translate(0, 0, -0.034);
         }
 
         int porkchops = entity.porkchops;
         for (int j = 0; j < porkchops; j++) {
-            ItemStack stack = new ItemStack(Items.COOKED_PORKCHOP);
-            MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
+            MinecraftClient.getInstance().getItemRenderer().renderItem(COOKED_PORKCHOP, ModelTransformation.Mode.GROUND, lightAbove, overlay, matrices, vertexConsumers, 0);
             matrices.translate(0, 0, -0.034);
         }
 

@@ -14,6 +14,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,6 +24,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.Tag;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.util.function.ToIntFunction;
@@ -36,10 +39,12 @@ public class ModBlocks {
     public static final Block PENCA = new PencaBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
     public static final Block TACO_BOWL = new TacoBowlBlock(FabricBlockSettings.copyOf(Blocks.CAKE));
 
-    public static BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build();
-    public static BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(ComalBlockEntity::new, COMAL).build();
-    public static BlockEntityType<OpenPotBlockEntity> OPEN_POT_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(OpenPotBlockEntity::new, OPEN_POT).build();
-    public static BlockEntityType<PencaBlockEntity> PENCA_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(PencaBlockEntity::new, PENCA).build();
+    public static final BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build();
+    public static final BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(ComalBlockEntity::new, COMAL).build();
+    public static final BlockEntityType<OpenPotBlockEntity> OPEN_POT_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(OpenPotBlockEntity::new, OPEN_POT).build();
+    public static final BlockEntityType<PencaBlockEntity> PENCA_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(PencaBlockEntity::new, PENCA).build();
+
+    public static final Tag<Block> FARMLAND = TagRegistry.block(new Identifier("c", "farmlands"));
 
     public static void init() {
         Registry.register(Registry.BLOCK, FurnaceBlock.ID, FURNACE_BLOCK);
