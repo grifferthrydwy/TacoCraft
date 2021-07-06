@@ -76,6 +76,10 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
         return MathHelper.nextInt(world.random, 2, 5);
     }
 
+    public static void placeAt(WorldAccess world, BlockState state, BlockPos pos, int flags) {
+        world.setBlockState(pos, ModBlocks.CORN_BLOCK.getDefaultState().with(HALF, DoubleBlockHalf.LOWER), flags);
+    }
+
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView view, BlockPos pos) {
         return floor.isIn(ModBlocks.FARMLAND);
@@ -193,11 +197,6 @@ public class CornBlock extends TallPlantBlock implements Fertilizable {
 
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack itemStack) {
-    }
-
-    @Override
-    public void placeAt(WorldAccess world, BlockState state, BlockPos pos, int flags) {
-        world.setBlockState(pos, this.getDefaultState().with(HALF, DoubleBlockHalf.LOWER), flags);
     }
 
     @Override
