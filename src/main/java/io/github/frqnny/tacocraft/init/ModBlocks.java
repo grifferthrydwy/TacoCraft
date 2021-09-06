@@ -38,12 +38,6 @@ public class ModBlocks {
     public static final Block OPEN_POT = new OpenPotBlock(FabricBlockSettings.copyOf(Blocks.CAULDRON).breakByTool(FabricToolTags.PICKAXES));
     public static final Block PENCA = new PencaBlock(FabricBlockSettings.copyOf(Blocks.OAK_LEAVES));
     public static final Block TACO_BOWL = new TacoBowlBlock(FabricBlockSettings.copyOf(Blocks.CAKE));
-
-    public static final BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build();
-    public static final BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(ComalBlockEntity::new, COMAL).build();
-    public static final BlockEntityType<OpenPotBlockEntity> OPEN_POT_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(OpenPotBlockEntity::new, OPEN_POT).build();
-    public static final BlockEntityType<PencaBlockEntity> PENCA_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(PencaBlockEntity::new, PENCA).build();
-
     public static final Tag<Block> FARMLAND = TagRegistry.block(new Identifier("c", "farmlands"));
 
     public static void init() {
@@ -59,7 +53,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK_ENTITY_TYPE, ComalBlock.ID, COMAL_BLOCK_ENTITY);
         Registry.register(Registry.BLOCK_ENTITY_TYPE, OpenPotBlock.ID, OPEN_POT_BLOCK_ENTITY);
         Registry.register(Registry.BLOCK_ENTITY_TYPE, PencaBlock.ID, PENCA_BLOCK_ENTITY);
-    }
+    }    public static final BlockEntityType<FurnaceBlockEntity> FURNACE_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(FurnaceBlockEntity::new, FURNACE_BLOCK).build();
 
     public static void clientInit() {
         BlockEntityRendererRegistry.INSTANCE.register(ModBlocks.COMAL_BLOCK_ENTITY, ComalBlockEntityRenderer::new);
@@ -72,5 +66,15 @@ public class ModBlocks {
 
     private static ToIntFunction<BlockState> createLightLevelFromBlockState() {
         return (blockState) -> (Boolean) blockState.get(Properties.LIT) ? 13 : 0;
-    }
+    }    public static final BlockEntityType<ComalBlockEntity> COMAL_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(ComalBlockEntity::new, COMAL).build();
+
+
+
+    public static final BlockEntityType<OpenPotBlockEntity> OPEN_POT_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(OpenPotBlockEntity::new, OPEN_POT).build();
+
+
+
+    public static final BlockEntityType<PencaBlockEntity> PENCA_BLOCK_ENTITY = FabricBlockEntityTypeBuilder.create(PencaBlockEntity::new, PENCA).build();
+
+
 }

@@ -10,7 +10,7 @@ public class TacoHelper {
 
     public static FoodComponent createFoodComponent(FoodComponent baseMeat, int hungerModifier, float satModifier) {
         return new FoodComponent.Builder()
-                .hunger(baseMeat.getHunger() + 2 + hungerModifier)
+                .hunger(baseMeat.getHunger() + 3 + hungerModifier)
                 .saturationModifier(baseMeat.getSaturationModifier() + 0.2F + satModifier)
                 .meat()
                 .build();

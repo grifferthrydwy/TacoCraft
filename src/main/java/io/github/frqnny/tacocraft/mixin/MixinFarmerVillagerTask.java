@@ -70,7 +70,8 @@ public abstract class MixinFarmerVillagerTask {
                 if (state.isAir() && block2 instanceof FarmlandBlock && villagerEntity.hasSeedToPlant()) {
                     SimpleInventory simpleInventory = villagerEntity.getInventory();
 
-                    for (int i = 0; i < simpleInventory.size(); ++i) {
+                    int size = simpleInventory.size();
+                    for (int i = 0; i < size; ++i) {
                         ItemStack itemStack = simpleInventory.getStack(i);
                         if (!itemStack.isEmpty()) {
                             if (itemStack.getItem() == ModItems.CORN_SEED) {

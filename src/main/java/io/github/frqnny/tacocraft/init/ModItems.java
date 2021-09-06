@@ -18,16 +18,17 @@ public class ModItems {
     public static final Item TORTILLA = new Item(new FabricItemSettings().group(TacoCraft.ITEM_GROUP).food(new FoodComponent.Builder().hunger(1).saturationModifier(0.6F).build()));
     public static final Item EMPTY_SHELL = new Item(new FabricItemSettings().group(TacoCraft.ITEM_GROUP).food(new FoodComponent.Builder().hunger(1).saturationModifier(0.6F).build()));
 
-    public static final Item STEAK_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 1, 0.6F));
-    public static final Item CARNITAS_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_PORKCHOP, 1, 0.6F));
-    public static final Item AL_PASTOR_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_PORKCHOP, 1, 0.1F));
-    public static final Item FISH_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_COD, 1, 0.6F));
-    public static final Item CHICKEN_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_CHICKEN, 1, 0.6F));
-    public static final Item CHEESY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 2, 0.2F));
-    public static final Item CRUNCHY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 1, 0.6F));
-    public static final Item BARBACOA_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(TacoHelper.BARBACOA, 1, 0.6F));
-    public static final Item DOUBLE_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 2, 1.2F));
-    public static final Item CALIFORNIA_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.BAKED_POTATO, 1, 0.6F));
+    public static final Item STEAK_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 0, 0.6F));
+    public static final Item CARNITAS_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_PORKCHOP, 0, 0.6F));
+    public static final Item LAMB_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_MUTTON, 0, 0.6F));
+    public static final Item AL_PASTOR_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_PORKCHOP, 2, 0.1F));
+    public static final Item FISH_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_COD, 0, 0.6F));
+    public static final Item CHICKEN_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_CHICKEN, 0, 0.6F));
+    public static final Item CHEESY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 1, 0.2F));
+    public static final Item CRUNCHY_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, -1, 0.6F));
+    public static final Item BARBACOA_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(TacoHelper.BARBACOA, 3, 0.7F));
+    public static final Item DOUBLE_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.COOKED_BEEF, 1, 1.2F));
+    public static final Item CALIFORNIA_TACO = TacoHelper.createTaco(TacoHelper.createFoodComponent(FoodComponents.BAKED_POTATO, 0, 0.6F));
     public static final Item GOLDEN_TACO = TacoHelper.createTaco(FoodComponents.GOLDEN_APPLE);
 
     public static final Item CLOSED_PENCA = new Item(new FabricItemSettings().group(TacoCraft.ITEM_GROUP));
@@ -54,6 +55,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, TacoCraft.id("al_pastor_taco"), AL_PASTOR_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("fish_taco"), FISH_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("chicken_taco"), CHICKEN_TACO);
+        Registry.register(Registry.ITEM, TacoCraft.id("lamb_taco"), LAMB_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("cheesy_taco"), CHEESY_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("crunchy_taco"), CRUNCHY_TACO);
         Registry.register(Registry.ITEM, TacoCraft.id("barbacoa_taco"), BARBACOA_TACO);
