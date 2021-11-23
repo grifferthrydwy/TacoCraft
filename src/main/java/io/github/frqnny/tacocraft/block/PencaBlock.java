@@ -81,4 +81,5 @@ public class PencaBlock extends BlockWithEntity {
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
+
 }

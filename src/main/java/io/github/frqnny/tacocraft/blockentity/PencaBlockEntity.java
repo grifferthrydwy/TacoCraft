@@ -1,13 +1,17 @@
 package io.github.frqnny.tacocraft.blockentity;
 
 import io.github.frqnny.tacocraft.init.ModBlocks;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.Nullable;
 
-public class PencaBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
+public class PencaBlockEntity extends BlockEntity {
     public int steaks = 0;
     public int porkchops = 0;
 
@@ -23,23 +27,19 @@ public class PencaBlockEntity extends BlockEntity implements BlockEntityClientSe
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
+    public void writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
         tag.putInt("porkchops", porkchops);
         tag.putInt("steaks", steaks);
-        return tag;
     }
 
+    @Nullable
     @Override
-    public void fromClientTag(NbtCompound tag) {
-        porkchops = tag.getInt("porkchops");
-        steaks = tag.getInt("steaks");
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this, BlockEntity::createNbt);
     }
 
-    @Override
-    public NbtCompound toClientTag(NbtCompound tag) {
-        tag.putInt("porkchops", porkchops);
-        tag.putInt("steaks", steaks);
-        return tag;
+    public void sync() {
+        ((ServerWorld) world).getChunkManager().markForUpdate(pos);
     }
 }

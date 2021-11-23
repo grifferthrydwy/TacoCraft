@@ -3,18 +3,22 @@ package io.github.frqnny.tacocraft.blockentity;
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.init.ModBlocks;
 import io.github.frqnny.tacocraft.init.ModItems;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
+public class ComalBlockEntity extends BlockEntity {
     boolean doneCooking = false;
     boolean canRender = false;
     private int cookTime = -1;
@@ -26,6 +30,14 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
 
     public static void tick(World world, BlockPos pos, BlockState state, ComalBlockEntity be) {
         if (!world.isClient) {
+
+            if (be.doneCooking || be.isCooking()) {
+                if (be.cookTime % 15 == 0) {
+                    be.sync();
+                }
+            }
+
+
             if (be.isCooking()) {
                 be.cookTime--;
             } else if (be.cookTime == 0) {
@@ -38,35 +50,30 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
+    public void writeNbt(NbtCompound tag) {
         tag.putShort("CookTime", (short) this.cookTime);
-        return super.writeNbt(tag);
+        tag.putBoolean("HasTortilla", hasTortilla);
+        tag.putBoolean("CanRender", canRender);
+        tag.putBoolean("DoneCooking", doneCooking);
+
     }
 
     @Override
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
         this.cookTime = tag.getShort("CookTime");
+        hasTortilla = tag.getBoolean("HasTortilla");
+        canRender = tag.getBoolean("CanRender");
+        doneCooking = tag.getBoolean("DoneCooking");
     }
 
+    @Nullable
     @Override
-    public void fromClientTag(NbtCompound compoundTag) {
-        if (compoundTag.getBoolean("hasTortilla")) {
-            hasTortilla = true;
-        }
-        canRender = compoundTag.getBoolean("canRender");
-        doneCooking = compoundTag.getBoolean("doneCooking");
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this, BlockEntity::createNbt);
     }
 
-    @Override
-    public NbtCompound toClientTag(NbtCompound compoundTag) {
-        compoundTag.putBoolean("hasTortilla", hasTortilla);
-        compoundTag.putBoolean("canRender", canRender);
-        compoundTag.putBoolean("doneCooking", doneCooking);
 
-        return compoundTag;
-
-    }
 
     public void startCooking() {
         cookTime = TacoCraft.CONFIG.tortilla_cook_time;
@@ -79,7 +86,7 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
     }
 
     public void spawnTortilla() {
-        if (doneCooking = true) {
+        if (doneCooking) {
             if (!Objects.requireNonNull(this.getWorld()).isClient) {
                 ItemScatterer.spawn(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.TORTILLA).copy());
             }
@@ -100,6 +107,10 @@ public class ComalBlockEntity extends BlockEntity implements BlockEntityClientSe
 
     public void setCanRender() {
         canRender = !canRender;
+    }
+
+    public void sync() {
+        ((ServerWorld) world).getChunkManager().markForUpdate(pos);
     }
 
 }

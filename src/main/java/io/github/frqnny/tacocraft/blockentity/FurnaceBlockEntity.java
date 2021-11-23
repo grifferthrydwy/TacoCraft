@@ -123,11 +123,10 @@ public class FurnaceBlockEntity extends BlockEntity implements FurnaceInventory,
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
+    public void writeNbt(NbtCompound tag) {
         tag.putShort("BurnTime", (short) this.burnTime);
         tag.putShort("FuelTime", (short) this.burnTime);
         Inventories.writeNbt(tag, items);
-        return super.writeNbt(tag);
     }
 
     @Override

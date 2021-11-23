@@ -2,15 +2,15 @@ package io.github.frqnny.tacocraft.blockentity;
 
 import io.github.frqnny.tacocraft.TacoCraft;
 import io.github.frqnny.tacocraft.init.ModBlocks;
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class OpenPotBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
+public class OpenPotBlockEntity extends BlockEntity {
     public int closed_pancas = 0;
     public boolean finished = false;
     public int tick = 0;
@@ -60,14 +60,13 @@ public class OpenPotBlockEntity extends BlockEntity implements BlockEntityClient
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound tag) {
+    public void writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
         tag.putInt("ClosedPancas", closed_pancas);
         tag.putInt("Tick", tick);
         tag.putBoolean("Ready", ready);
         tag.putBoolean("Finished", finished);
         tag.putBoolean("Cooking", cooking);
-        return tag;
     }
 
 
@@ -94,27 +93,13 @@ public class OpenPotBlockEntity extends BlockEntity implements BlockEntityClient
         return isDirt;
     }
 
-    @Override
-    public void fromClientTag(NbtCompound tag) {
-        closed_pancas = tag.getInt("ClosedPancas");
-        tick = tag.getInt("Tick");
-        ready = tag.getBoolean("Ready");
-        finished = tag.getBoolean("Finished");
-        cooking = tag.getBoolean("Cooking");
-    }
-
-    @Override
-    public NbtCompound toClientTag(NbtCompound tag) {
-        tag.putInt("ClosedPancas", closed_pancas);
-        tag.putInt("Tick", tick);
-        tag.putBoolean("Ready", ready);
-        tag.putBoolean("Finished", finished);
-        tag.putBoolean("Cooking", cooking);
-        return tag;
-    }
 
 
     public boolean isCooking() {
         return cooking;
+    }
+
+    public void sync() {
+        ((ServerWorld) world).getChunkManager().markForUpdate(pos);
     }
 }
