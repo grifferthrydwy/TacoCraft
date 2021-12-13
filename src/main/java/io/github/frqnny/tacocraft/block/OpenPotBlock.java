@@ -74,7 +74,7 @@ public class OpenPotBlock extends BlockWithEntity {
                 return ActionResult.FAIL;
             }
             if (isSetupReady(world, pos) && be.closed_pancas == 2 && player.getStackInHand(hand).isEmpty() && !be.finished) {
-                be.letsgetreadybois();
+                be.setReady();
                 be.sync();
                 return ActionResult.SUCCESS;
             } else if (be.closed_pancas < 2 && !be.finished) {

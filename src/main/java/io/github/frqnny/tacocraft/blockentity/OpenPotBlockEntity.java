@@ -70,7 +70,7 @@ public class OpenPotBlockEntity extends BlockEntity {
     }
 
 
-    public void letsgetreadybois() {
+    public void setReady() {
         ready = true;
     }
 
