@@ -13,7 +13,9 @@ import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.*;
+import net.minecraft.world.gen.decorator.BiomePlacementModifier;
+import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.decorator.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
 
 public class ModGen {

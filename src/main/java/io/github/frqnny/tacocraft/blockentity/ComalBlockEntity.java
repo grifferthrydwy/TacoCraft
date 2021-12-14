@@ -74,7 +74,6 @@ public class ComalBlockEntity extends BlockEntity {
     }
 
 
-
     public void startCooking() {
         cookTime = TacoCraft.CONFIG.tortilla_cook_time;
         setCanRender();

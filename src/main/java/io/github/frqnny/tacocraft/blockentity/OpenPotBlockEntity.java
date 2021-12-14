@@ -94,7 +94,6 @@ public class OpenPotBlockEntity extends BlockEntity {
     }
 
 
-
     public boolean isCooking() {
         return cooking;
     }
