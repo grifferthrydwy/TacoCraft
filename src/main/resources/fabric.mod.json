@@ -29,6 +29,6 @@
   ],
   "depends": {
     "minecraft": "1.18.x",
-    "libgui": ">=4.0.0-alpha.2"
+    "libgui": "*"
   }
 }

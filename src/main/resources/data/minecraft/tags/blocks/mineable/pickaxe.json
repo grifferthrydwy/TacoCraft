@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "tacocraft:furnace",
+    "tacocraft:open_pot",
+    "tacocraft:corn_brick"
+  ]
+}
