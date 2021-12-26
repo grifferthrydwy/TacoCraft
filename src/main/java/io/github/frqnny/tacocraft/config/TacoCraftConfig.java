@@ -29,4 +29,9 @@ public class TacoCraftConfig implements Config {
     public String getName() {
         return "tacocraft";
     }
+
+    @Override
+    public String getExtension() {
+        return "json5";
+    }
 }
